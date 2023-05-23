@@ -6,22 +6,22 @@ import (
 )
 
 func main() {
-	i := 100
-	j := 100
+	a := 123456
+	b := [5]int{1, 2, 3, 4, 5}
+	aString := strconv.Itoa(a) // initialize aString, which is just a string (not int) equivalent of 'a'
 
-	fmt.Println(i, j)
+	array := make([]int, 0, len(aString))
 
-}
-
-func palindromecheck() {
-	n := 16889896
-	var nString string = strconv.Itoa(n)
-	a := len(nString)
-
-	arr := make([]string, len(nString))
-	if a == 5 {
-		// check to see if e1 = e5, e2 = e4 (e4 means "element 4" within the string)
-	} else if a == 6 {
-		// check to see if e1 = e6, e2 = e5, and e3 = e4
+	for i := 1; i <= len(aString); i++ {
+		array = append(array, 1)
 	}
+
+	// for i, ch := range aString {
+	// digit, _ := strconv.Atoi(string(ch))
+	// array[i] = digit
+	//	}
+
+	fmt.Println(array)
+	fmt.Println("b:", b)
+	fmt.Println(aString)
 }
