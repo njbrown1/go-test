@@ -12,17 +12,23 @@ import "fmt"
 // simple modulo division by early prime numbers (2, 3, 5, 7...)
 
 func main() {
-	fmt.Println("hello world")
-	fmt.Println(600851475143 % 2)
-	fmt.Println(600851475143 % 3)
-	fmt.Println(600851475143 % 5)
-	fmt.Println(600851475143 % 7)
-	fmt.Println(600851475143 % 11)
-	fmt.Println(600851475143 % 13)
-	fmt.Println(600851475143 % 17)
-	fmt.Println(600851475143 % 19)
-	fmt.Println(600851475143 % 23)
-	fmt.Println(600851475143 % 29)
-	fmt.Println(600851475143 % 33)
-	fmt.Println(600851475143 % 37)
+
+	j := 0
+	var array []int
+	array = append(array, 2)
+	fmt.Println("array:", array)
+
+	for i := 4; i <= 10; i++ { // creating an array with prime numbers from 1 - 10000 (1, 2, and 3 are not prime)
+
+		j = 0
+
+		for j < len(array) {
+
+			if i%array[j] == 0 {
+
+			}
+
+			j++
+		}
+	}
 }
