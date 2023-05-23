@@ -1,24 +1,24 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
 func main() {
-	a := 6898
-	b := [5]int{1, 2, 3, 4, 5}
-	aString := strconv.Itoa(a) // initialize aString, which is just a string (not int) equivalent of 'a'
+	a := 100
+	b := 100
+	n := 0
 
-	array := make([]int, 0, len(aString))
+	fmt.Println("a initial:", a, "\nb initial:", b)
+	fmt.Println("a * b initial:", a*b)
 
-	for i, ch := range aString {
-		// array[i] = int(ch)
-		array = append(array, int(ch))
-		fmt.Printf("Index: %d, Character: %c\n", i, ch)
-	} // this code was added by ChatGPT
+	for a <= 104 {
+		for b <= 104 {
+			n = a * b
+			fmt.Println(a, ",", b, ":", n)
+			b++
+		}
 
-	fmt.Println("initial array:", array)
-	fmt.Println("b:", b)
-	fmt.Println(aString)
+		b = 100
+		a++
+
+	}
 }
