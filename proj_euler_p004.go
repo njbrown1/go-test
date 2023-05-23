@@ -20,20 +20,17 @@ func main() {
 			n = a * b
 
 			nString = strconv.Itoa(n)
-			fmt.Println(nString)
-			fmt.Printf("a: %d, b: %d, n: %d \n", a, b, n) // ensuring that the 'for' loop works correctly
+			fmt.Printf("a: %d, b: %d, n: %d, length: %d, nString: %s\n", a, b, n, len(nString), nString) // ensuring that the 'for' loop works correctly
 
 			b++
 
 			if n > 99999 {
-				fmt.Println("6 digits long")
-				if nString[1] == nString[6] {
+				if nString[0] == nString[5] {
 					fmt.Println("kind of a palindrome")
 				}
 			} else {
-				fmt.Println("5 digits long")
-				if nString[0] == nString[4] {
-					fmt.Println("kind of a palindrome")
+				if nString[0] == nString[4] && nString[1] == nString[3] {
+					fmt.Println("palindrome found!")
 				}
 			}
 
