@@ -16,23 +16,16 @@ func main() {
 			fmt.Printf("a: %d, b: %d, n: %d \n", a, b, n) // ensuring that the 'for' loop works correctly
 			b++
 
-			if n%10 != 0 {
-
+			if ((n) / (10 ^ 4)) >= 10 {
+				fmt.Println("5 digits long")
+			} else if ((n) / (10 ^ 4)) >= 1 {
+				fmt.Println("6 digits long")
 			}
+
 		}
 
 		b = 100
 		a++
 
 	}
-}
-
-func palindrome_check() {
-	d1 := 7
-	d2 := 6
-	d3 := 5
-	d4 := 4
-	d5 := 3
-	d6 := n % 10
-	fmt.Println(d1, d2, d3, d4, d5, d6) // doesn't work correctly, since palindrome_check() doesn't know what n is.
 }
