@@ -8,15 +8,16 @@ import (
 func main() {
 	a := 100
 	b := 100
-	n := 0
+	n := 0 // the product of a and b
 	largest_palindrome := 0
 	var nString string // defaults to an empty string
 
 	for a <= 999 {
+
 		for b <= 999 {
 
 			n = a * b
-			nString = strconv.Itoa(n) // convert n to a string, 'nString''
+			nString = strconv.Itoa(n) // convert n to a string, 'nString'
 			b++
 
 			if n > 99999 { // if n has 6 digits
@@ -40,14 +41,15 @@ func main() {
 						fmt.Println("new LARGEST palindrome found!")
 						fmt.Printf("a: %d, b: %d, n: %d, length: %d, nString: %s\n", a, b, n, len(nString), nString) // showing a, b, n, and the new largest palindrome
 					}
+
 				}
 
 			}
 
 		}
 
-		b = 100
-		a++
+		b = 100 // reset b to 100
+		a++     // increase a by 1
 
 	}
 
