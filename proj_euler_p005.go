@@ -5,15 +5,16 @@ import "fmt"
 func main() {
 
 	var array []int
-	array = append(array, 1, 7, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
-	number := 4
+	array = append(array, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+	array = append(array, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+	number := 2520
 	counter := 0
 
-	for counter < 12 { // until
+	for counter < 20 { // until
 
 		counter = 0
 
-		for i := 0; i <= 11; i++ {
+		for i := 0; i <= 19; i++ {
 
 			if number%array[i] == 0 {
 				counter++
@@ -21,8 +22,8 @@ func main() {
 
 		}
 
-		if counter < 10 {
-			number++
+		if counter < 20 {
+			number = number + (2520 * 11 * 13 * 17 * 19)
 			fmt.Println(number)
 		}
 
