@@ -9,7 +9,7 @@ import "fmt"
 // prime number – because I plugged 600851475143 into the answer box, and it was wrong.
 
 // a composite number (ie. not a prime number) must have at least 2 composite factors.
-// simple modulo division by early prime numbers (2, 3, 5, 7...) will work quite well
+// simple modulo division by early prime numbers (2, 3, 5, 7...) will work quite well.
 
 func main() {
 
