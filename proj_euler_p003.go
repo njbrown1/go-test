@@ -37,6 +37,6 @@ func main() {
 		}
 	}
 
-	fmt.Println("new array:", slice)
+	fmt.Println("new array:", slice[42])
 
 }
