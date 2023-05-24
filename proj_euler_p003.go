@@ -15,9 +15,10 @@ func main() {
 
 	var slice []int                // initialize an empty slice
 	slice = append(slice, 2, 3, 5) // start with the first few prime numbers
-	fmt.Println("array:", slice)
+	// current_number := 600851475143
+	// largest_prime_number := 0
 
-	for i := 2; i <= 20; i++ { // creating an array with prime numbers from 1 - 10000 (1 is not a prime)
+	for i := 2; i <= 1000; i++ { // creating an array with prime numbers from 1 - 10000 (1 is not a prime)
 
 		for j := 0; j < len(slice); j++ {
 
