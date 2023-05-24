@@ -13,21 +13,29 @@ import "fmt"
 
 func main() {
 
-	var array []int
-	array = append(array, 2, 3, 5)
-	fmt.Println("array:", array)
+	var slice []int                // initialize an empty slice
+	slice = append(slice, 2, 3, 5) // start with the first few prime numbers
+	fmt.Println("array:", slice)
 
-	for i := 4; i <= 10; i++ { // creating an array with prime numbers from 1 - 10000 (1, 2, and 3 are not prime)
+	for i := 2; i <= 20; i++ { // creating an array with prime numbers from 1 - 10000 (1 is not a prime)
 
-		for j := 0; j < len(array); j++ {
-			fmt.Println("i:", i, "j:", j)
+		for j := 0; j < len(slice); j++ {
 
-			if i%array[j] == 0 { // DOESN'T QUITE WORK YET, but working on it
-				j = len(array)
+			if i%slice[j] != 0 { // if 'i%array[j]' equals 0, that means that the number is NOT prime
+
 			} else {
-				fmt.Println(i, "is prime")
-				// NOTE: need to append the prime number to the array
+				break
+			}
+
+			if j == (len(slice) - 1) { // if i is not divisible by any of the prime numbers in the slice
+
+				fmt.Println(i, "is prime!")
+				slice = append(slice, i)
+
 			}
 		}
 	}
+
+	fmt.Println("new array:", slice)
+
 }
