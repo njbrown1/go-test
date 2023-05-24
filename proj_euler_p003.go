@@ -14,21 +14,20 @@ import "fmt"
 func main() {
 
 	var array []int
-	array = append(array, 2, 3)
+	array = append(array, 2, 3, 5)
 	fmt.Println("array:", array)
 
 	for i := 4; i <= 10; i++ { // creating an array with prime numbers from 1 - 10000 (1, 2, and 3 are not prime)
 
 		for j := 0; j < len(array); j++ {
+			fmt.Println("i:", i, "j:", j)
 
 			if i%array[j] == 0 { // DOESN'T QUITE WORK YET, but working on it
-
+				j = len(array)
 			} else {
 				fmt.Println(i, "is prime")
 				// NOTE: need to append the prime number to the array
 			}
-
-			j++
 		}
 	}
 }
