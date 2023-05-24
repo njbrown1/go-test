@@ -12,20 +12,20 @@ func main() {
 
 	for counter < 10 {
 		counter = 0
+
 		for i := 0; i <= 9; i++ {
 
 			if number%array[i] == 0 {
 				counter++
 			}
 
-			if counter < 10 {
-				number++
-			}
-
 		}
 
+		if counter < 10 {
+			number++
+		}
+
+		fmt.Println(number)
+
 	}
-
-	fmt.Println(number)
-
 }
