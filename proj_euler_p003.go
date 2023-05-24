@@ -15,10 +15,10 @@ func main() {
 
 	var slice []int                // initialize an empty slice
 	slice = append(slice, 2, 3, 5) // start with the first few prime numbers
-	// current_number := 600851475143
-	// largest_prime_number := 0
+	current_number := 600851475143
+	largest_prime_number := 0
 
-	for i := 2; i <= 1000; i++ { // creating an array with prime numbers from 1 - 10000 (1 is not a prime)
+	for i := 2; i <= 10000; i++ { // creating an array with prime numbers from 1 - 1000 (1 is not a prime)
 
 		for j := 0; j < len(slice); j++ {
 
@@ -39,4 +39,14 @@ func main() {
 
 	fmt.Println("new array:", slice[42])
 
+	for a := 0; a < (len(slice)); a++ {
+		if ((current_number % slice[a]) == 0) && (slice[a] > largest_prime_number) {
+			largest_prime_number = slice[a]
+			current_number = (current_number / slice[a])
+		}
+
+	}
+
+	fmt.Println("new largest prime factor:", largest_prime_number)
+	fmt.Println("current number:", current_number)
 }
