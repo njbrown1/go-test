@@ -1,8 +1,9 @@
 package main
 
-import "fmt"
-
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 
@@ -12,15 +13,14 @@ func main() {
 	fmt.Println("hello world")
 
 	for i := 1; i <= 100; i++ {
-		sum_of_squares = sum_of_squares + (i ^ 2) // NEED TO FIX
+		sum_of_squares = sum_of_squares + int(math.Pow(float64(i), 2)) // complicated syntax that just adds i^2 to sum_of_squares variable, since Go is stupid and treats '^' as a bitwise XOR operator, not the exponentiation operator.
 		sum = sum + (i)
 		fmt.Println("i:", i, "sum of squares:", sum_of_squares, "sum:", sum)
 	}
 
-	square_of_sum = (sum ^ 2)
+	square_of_sum = int(math.Pow((float64(sum)), 2))
 
 	fmt.Println(square_of_sum)
 	fmt.Println(sum_of_squares)
-	fmt.Println(6 ^ 2)
-	fmt.Println("The difference between the sum of the squares and the square of the sum is:", (sum_of_squares - square_of_sum))
+	fmt.Println("The difference between the sum of the squares and the square of the sum is:", (square_of_sum - sum_of_squares))
 }
