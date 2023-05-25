@@ -5,22 +5,25 @@ import "fmt"
 // import "math"
 
 func find_multiplier(i int) {
-	for a := i; a > 0; a-- {
 
+	current_multiplier := i
+
+	for a := (i - 1); a > 0; a-- {
+
+		if current_multiplier%a == 0 {
+			current_multiplier = (current_multiplier / a) // if current_multiplier is divisible by a, divide the current multiplier by a
+		}
+
+		// fmt.Println("current_multiplier for:", i, "and a:", a, "|", current_multiplier)
 	}
+
+	fmt.Println("current_multiplier:", current_multiplier, "| for i:", i)
 
 }
 
 func main() {
 
-	var slice []int
-	slice = append(slice, 1, 2, 3)
-	fmt.Println(slice)
-
-	// current_divisible_number := 6
-
-	for i := 4; i <= 20; i++ { // for the numbers 4-x (here, 20)
-
-		slice = append(slice, i) // add i to the slice
+	for j := 2; j <= 10; j++ {
+		find_multiplier(j)
 	}
 }
