@@ -6,23 +6,25 @@ import "fmt"
 
 func main() {
 
-	current_divisible_number := 12
 	var slice []int
-
-	for i := 1; i <= 20; i++ { // add the numbers 1-20 to the slice
-		slice = append(slice, i)
-	}
-
+	slice = append(slice, 1, 2, 3)
 	fmt.Println(slice)
-	for j := 0; j <= 19; j++ {
 
-		current_divisor := slice[j]
+	// current_divisible_number := 6
 
-		if current_divisible_number%slice[j] == 0 {
-			current_divisor = (current_divisible_number / slice[j])
-			fmt.Println("current_divisor:", current_divisor, "current_divisible_number:", current_divisible_number)
+	for i := 4; i <= 20; i++ { // for the numbers 4-x (here, 20)
+
+		slice = append(slice, i) // add i to the slice
+		current_multiplier := i
+
+		fmt.Println(i)
+
+		for a := 0; a < len(slice); a++ {
+
+			if current_multiplier%slice[a] == 0 {
+				current_multiplier = (current_multiplier / slice[a])
+				fmt.Println("i:", i, "current_multiplier:", current_multiplier)
+			}
 		}
-
 	}
-
 }
