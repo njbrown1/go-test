@@ -59,8 +59,6 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 			current_prime_factor_map[key] = individual_prime_factor_map[key]
 		}
 
-		fmt.Println("Key:", key, "=>", "Element:", value) // prints
-
 	}
 
 	return current_prime_factor_map
@@ -69,16 +67,14 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 
 func main() {
 
-	old_number := 1
 	new_number := 2
 	up_to_number := 10
 
-	current_map := make(map[int]int)
+	current_map := make(map[int]int) // initialize an empty map
 
 	for i := 1; i < up_to_number; i++ {
 		current_map = update_current_prime_factor_map(new_number, new_number, current_map)
-		fmt.Println(current_map)
-		old_number++
+		fmt.Println("new_number:", new_number, "current_map:", current_map)
 		new_number++
 	}
 
