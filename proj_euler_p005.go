@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "math"
 
 func generate_primes(limit int) []int { // returns a slice with prime numbers from 2 - limit.
 	var prime_slice []int
@@ -50,7 +51,7 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 
 	individual_prime_factor_map := find_prime_factorization(limit, number)
 
-	for key, value := range individual_prime_factor_map {
+	for key, _ := range individual_prime_factor_map { // the _ discards the value, as it isn't really needed
 
 		if current_prime_factor_map[key] == 0 { // if there isn't a value assigned to the key in the current_prime_factor_map
 			current_prime_factor_map[key] = individual_prime_factor_map[key]
@@ -69,13 +70,20 @@ func main() {
 
 	new_number := 2
 	up_to_number := 10
+	evenly_divisible_number := 1 // starts at 1 so that multiplication works
 
 	current_map := make(map[int]int) // initialize an empty map
 
-	for i := 1; i < up_to_number; i++ {
+	for i := 1; i < up_to_number; i++ { // update current_map
 		current_map = update_current_prime_factor_map(new_number, new_number, current_map)
 		fmt.Println("new_number:", new_number, "current_map:", current_map)
 		new_number++
 	}
+
+	for prime, exponent := range current_map { // perform the operation
+		evenly_divisible_number = int(evenly_divisible_number) * int(math.Pow(float64(prime), float64(exponent)))
+	}
+
+	fmt.Println("The smallest possible EVENLY DIVISIBLE integer, for the numbers 1 -", up_to_number, "is:", evenly_divisible_number)
 
 }
