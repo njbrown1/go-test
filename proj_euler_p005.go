@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func generate_primes(limit int) []int { // returns a slice with prime numbers from 2 - limit.
+
 	var prime_slice []int
 	prime_slice = append(prime_slice, 2, 3, 5) // add the first few primes.
 
@@ -39,7 +42,7 @@ func find_prime_factorization(limit int, number int) map[int]int { // returns a 
 		if number%prime == 0 {
 			primeFactorMap[prime]++
 			number = number / prime
-			i-- // check the prime again
+			i-- // check the prime again, if the number is divisible by the prime
 		}
 	}
 
@@ -49,7 +52,7 @@ func find_prime_factorization(limit int, number int) map[int]int { // returns a 
 
 func update_current_prime_factor_map(limit int, number int, current_prime_factor_map map[int]int) map[int]int { // returns an updated prime factor map.
 
-	individual_prime_factor_map := find_prime_factorization(limit, number)
+	individual_prime_factor_map := find_prime_factorization(limit, number) // grab the individual_prime_factor_map from the find_prime_factorization function
 
 	for key, _ := range individual_prime_factor_map { // the _ discards the value, as it isn't really needed
 
@@ -75,12 +78,12 @@ func main() {
 	current_map := make(map[int]int) // initialize an empty map
 
 	for i := 1; i < up_to_number; i++ { // update current_map
-		current_map = update_current_prime_factor_map(new_number, new_number, current_map)
-		fmt.Println("new_number:", new_number, "current_map:", current_map)
+		current_map = update_current_prime_factor_map(new_number, new_number, current_map) // for (limit, number, current_map). limit MUST be equal to (NOT less than) number, since the number itself can be prime.
+		fmt.Println("new_number:", new_number, "current_map:", current_map)                // for debugging purposes
 		new_number++
 	}
 
-	for prime, exponent := range current_map { // perform the operation
+	for prime, exponent := range current_map { // perform the exponentation operation to find the final evenly_divisible_number
 		evenly_divisible_number = int(evenly_divisible_number) * int(math.Pow(float64(prime), float64(exponent)))
 	}
 
