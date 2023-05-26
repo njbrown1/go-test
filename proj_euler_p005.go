@@ -72,7 +72,7 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 func main() {
 
 	new_number := 2
-	up_to_number := 10
+	up_to_number := 20
 	evenly_divisible_number := 1 // starts at 1 so that multiplication works
 
 	current_map := make(map[int]int) // initialize an empty map
@@ -88,5 +88,5 @@ func main() {
 	}
 
 	fmt.Println("The smallest possible EVENLY DIVISIBLE integer, for the numbers 1 -", up_to_number, "is:", evenly_divisible_number)
-
+	// solved! answer: 232792560
 }
