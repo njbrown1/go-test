@@ -46,17 +46,20 @@ func find_prime_factorization(limit int, number int) map[int]int { // returns a 
 
 }
 
-func update_current_prime_factor_map(limit int, number int, current_prime_factor_map map[int]int) map[int]int {
+func update_current_prime_factor_map(limit int, number int, current_prime_factor_map map[int]int) map[int]int { // returns an updated prime factor map.
 
 	individual_prime_factor_map := find_prime_factorization(limit, number)
 
 	for key, value := range individual_prime_factor_map {
 
-		if individual_prime_factor_map[key] > current_prime_factor_map[key] {
+		if current_prime_factor_map[key] == 0 { // if there isn't a value assigned to the key in the current_prime_factor_map
+			current_prime_factor_map[key] = individual_prime_factor_map[key]
+
+		} else if individual_prime_factor_map[key] > current_prime_factor_map[key] {
 			current_prime_factor_map[key] = individual_prime_factor_map[key]
 		}
 
-		fmt.Println("Key:", key, "=>", "Element:", value)
+		fmt.Println("Key:", key, "=>", "Element:", value) // prints
 
 	}
 
@@ -67,9 +70,11 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 func main() {
 
 	fmt.Println("ucpfm output:")
-	x := 279 // update with number x
 
-	result := update_current_prime_factor_map(x, x, find_prime_factorization(x, x))
-	fmt.Println(result)
+	old_number := 12
+	new_number := 13 // update with number x
+
+	result := update_current_prime_factor_map(new_number, new_number, find_prime_factorization(old_number, old_number))
+	fmt.Println("new map:", result)
 
 }
