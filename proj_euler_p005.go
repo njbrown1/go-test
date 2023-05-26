@@ -30,18 +30,11 @@ func generate_primes(limit int) []int {
 
 }
 
-func fpf(limit int, number int) []int { // map[int]int { // fpf stands for 'find_prime_factorization'. returns a map with int keys and values.
+func fpf(limit int, number int) map[int]int { // fpf stands for 'find_prime_factorization'. returns a map with int keys and values.
 
 	using_prime_slice := generate_primes(limit)
 
 	primeFactorMap := make(map[int]int) // generate a new map with BOTH keys and values as integers.
-
-	//for i := 0; i < len(using_prime_slice); i++ {
-
-	//m[using_prime_slice[i]]
-	//fmt.Println(m[i])
-
-	//}
 
 	for i := 0; i < len(using_prime_slice); i++ { // iterate over all the primes
 		var prime int = using_prime_slice[i] // define the prime
@@ -52,18 +45,14 @@ func fpf(limit int, number int) []int { // map[int]int { // fpf stands for 'find
 		}
 	}
 
-	for key, value := range primeFactorMap {
-		fmt.Println("key:", key, "value:", value)
-	}
-
-	return using_prime_slice
+	return primeFactorMap
 
 }
 
 func main() {
 
 	fmt.Println("gp output:")
-	result := fpf(50, 75)
+	result := fpf(1500, 75)
 	fmt.Println(result)
 
 }
