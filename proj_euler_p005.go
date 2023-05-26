@@ -69,12 +69,17 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 
 func main() {
 
-	fmt.Println("ucpfm output:")
+	old_number := 1
+	new_number := 2
+	up_to_number := 10
 
-	old_number := 12
-	new_number := 13 // update with number x
+	current_map := make(map[int]int)
 
-	result := update_current_prime_factor_map(new_number, new_number, find_prime_factorization(old_number, old_number))
-	fmt.Println("new map:", result)
+	for i := 1; i < up_to_number; i++ {
+		current_map = update_current_prime_factor_map(new_number, new_number, current_map)
+		fmt.Println(current_map)
+		old_number++
+		new_number++
+	}
 
 }
