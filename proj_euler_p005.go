@@ -2,10 +2,7 @@ package main
 
 import "fmt"
 
-func generate_primes(limit int) []int {
-
-	// this is a classic prime sieve that will generate primes from 2 – limit.
-
+func generate_primes(limit int) []int { // returns a slice with prime numbers from 2 - limit.
 	var prime_slice []int
 	prime_slice = append(prime_slice, 2, 3, 5) // add the first few primes.
 
@@ -30,9 +27,9 @@ func generate_primes(limit int) []int {
 
 }
 
-func find_prime_factorization(limit int, number int) map[int]int { // returns a map with int keys and values.
+func find_prime_factorization(limit int, number int) map[int]int { // returns a map with int keys and int values.
 
-	using_prime_slice := generate_primes(limit)
+	using_prime_slice := generate_primes(limit) // grab a prime_slice from the function generate_primes.
 
 	primeFactorMap := make(map[int]int) // generate a new map with BOTH keys and values as integers.
 
@@ -53,14 +50,26 @@ func update_current_prime_factor_map(limit int, number int, current_prime_factor
 
 	individual_prime_factor_map := find_prime_factorization(limit, number)
 
-	return individual_prime_factor_map
+	for key, value := range individual_prime_factor_map {
+
+		if individual_prime_factor_map[key] > current_prime_factor_map[key] {
+			current_prime_factor_map[key] = individual_prime_factor_map[key]
+		}
+
+		fmt.Println("Key:", key, "=>", "Element:", value)
+
+	}
+
+	return current_prime_factor_map
 
 }
 
 func main() {
 
-	fmt.Println("gp output:")
-	result := update_current_prime_factor_map(1500, 75, find_prime_factorization(1500, 75))
+	fmt.Println("ucpfm output:")
+	x := 279 // update with number x
+
+	result := update_current_prime_factor_map(x, x, find_prime_factorization(x, x))
 	fmt.Println(result)
 
 }
