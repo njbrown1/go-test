@@ -13,7 +13,7 @@ func find_product(thousand_digit_number string, number_of_consecutive_digits int
 
 	largest_product := 0
 
-	for i := 0; i <= 12; i++ { // 12 is arbitrary
+	for i := 0; i <= (1000 - number_of_consecutive_digits); i++ { // to avoid an index-out-of-range error
 
 		current_product := 1
 
@@ -22,7 +22,7 @@ func find_product(thousand_digit_number string, number_of_consecutive_digits int
 			character, _ := strconv.Atoi(string(thousand_digit_number[i+j]))
 			slice_of_x_numbers = append(slice_of_x_numbers, character) // add one number to the slice
 			current_product = current_product * character
-			fmt.Println(i, j, slice_of_x_numbers, current_product)
+			fmt.Println(i, j, slice_of_x_numbers, current_product) // for debugging purposes
 
 		}
 
@@ -41,6 +41,6 @@ func main() {
 	data, _ := os.ReadFile("1000_digit_number.txt")                               // read the file with the 1000 digit number
 	var thousand_digit_number string = strings.ReplaceAll(string(data), "\n", "") // remove newline characters from the data
 	fmt.Println(thousand_digit_number)                                            // debugging purposes
-	fmt.Println(find_product(thousand_digit_number, 4))
+	fmt.Println(find_product(thousand_digit_number, 13))
 
 }
