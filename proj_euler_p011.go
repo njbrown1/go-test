@@ -26,9 +26,10 @@ func main() {
 		for j := 0; j <= 3; j++ {
 			tens_digit, _ := strconv.Atoi(string(testdata[(8*i)+(2*j)]))   //
 			ones_digit, _ := strconv.Atoi(string(testdata[(8*i)+(2*j)+1])) // access the next index
-			fmt.Println(i, j, "|", tens_digit, ones_digit)
 			twoD[i][j] = (tens_digit * 10) + (ones_digit)
-			fmt.Println
+
+			fmt.Println(i, j, "|", tens_digit, ones_digit)
+			fmt.Println(twoD)
 		}
 	}
 
