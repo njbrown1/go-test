@@ -13,10 +13,8 @@ func main() {
 	var data_without_newlines string = strings.ReplaceAll(string(grid_file), "\n", "")     // remove newline characters
 	var condensed_data string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
 
-	fmt.Println("data:", string(condensed_data))                                                          // for debugging
-	fmt.Println("length of data:", len(condensed_data), "| data index of 0:", string(condensed_data[41])) // for debugging
-
 	two_dimensional_slice := make([][]int, 20)
+
 	for i := 0; i <= 19; i++ {
 
 		two_dimensional_slice[i] = make([]int, 20)
@@ -26,24 +24,30 @@ func main() {
 			ones_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)+1])) // access the next index
 			two_dimensional_slice[i][j] = (tens_digit * 10) + (ones_digit)        // assign the two-digit number to the two-dimensional array
 		}
-		fmt.Println(two_dimensional_slice) // debugging purposes
 	}
-
-	fmt.Println(find_largest_product_up_and_down(two_dimensional_slice)) // debugging purposes
+	fmt.Println(find_largest_product_up_and_down(two_dimensional_slice)) // necessary
 }
 
 func find_largest_product_up_and_down(grid [][]int) int { // input: the two_dimensional_slice (grid) of numbers. output: the largest product.
 
-	// this function starts
+	for row := 0; row <= 19; row++ {
+		for column := 0; column <= 19; column++ {
 
-	for row := 1; row <= 20; row++ { // indexing adjusted
-		for column := 1; column <= 20; column++ {
+			x := column
+			y := row
+			out_of_range := (x < 0 || x > 19) || (y < 0 || y > 19)
+			var four_number_slice []int
 
-			number_1 := grid[row-1+0][column-1]
-			number_2 := grid[row-1+1][column-1]
-			number_3 := grid[row-1+2][column-1]
-			number_4 := grid[row-1+3][column-1]
-			fmt.Println(number_1, number_2, number_3, number_4)
+			for k := 1; k <= 4; k++ {
+				if out_of_range == true {
+					break
+				}
+				four_number_slice = append(four_number_slice, grid[y][x])
+				x++
+				out_of_range = (x < 0 || x > 19) || (y < 0 || y > 19)
+			}
+
+			fmt.Println(four_number_slice)
 		}
 	}
 	return 1024
