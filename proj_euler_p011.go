@@ -26,12 +26,27 @@ func main() {
 			ones_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)+1])) // access the next index
 			two_dimensional_slice[i][j] = (tens_digit * 10) + (ones_digit)        // assign the two-digit number to the two-dimensional array
 		}
-		fmt.Println(two_dimensional_slice)
+		fmt.Println(two_dimensional_slice) // debugging purposes
 	}
+
+	fmt.Println(find_largest_product_up_and_down(two_dimensional_slice)) // debugging purposes
 }
 
-func find_largest_product_up_and_down([]int) int {
-	return 4
+func find_largest_product_up_and_down(grid [][]int) int { // input: the two_dimensional_slice (grid) of numbers. output: the largest product.
+
+	// this function starts
+
+	for row := 1; row <= 20; row++ { // indexing adjusted
+		for column := 1; column <= 20; column++ {
+
+			number_1 := grid[row-1+0][column-1]
+			number_2 := grid[row-1+1][column-1]
+			number_3 := grid[row-1+2][column-1]
+			number_4 := grid[row-1+3][column-1]
+			fmt.Println(number_1, number_2, number_3, number_4)
+		}
+	}
+	return 1024
 }
 
 // I need four functions:
