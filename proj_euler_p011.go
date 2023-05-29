@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	// "strconv"
+	"strconv"
 	"strings"
 )
 
@@ -24,10 +24,11 @@ func main() {
 
 	for i := 0; i <= 3; i++ {
 		for j := 0; j <= 3; j++ {
-			tens_digit := string(testdata[(8*i)+(2*j)])
-			ones_digit := string(testdata[(8*i)+(2*j)+1])
+			tens_digit, _ := strconv.Atoi(string(testdata[(8*i)+(2*j)]))   //
+			ones_digit, _ := strconv.Atoi(string(testdata[(8*i)+(2*j)+1])) // access the next index
 			fmt.Println(i, j, "|", tens_digit, ones_digit)
-
+			twoD[i][j] = (tens_digit * 10) + (ones_digit)
+			fmt.Println
 		}
 	}
 
