@@ -9,15 +9,27 @@ import (
 
 func main() {
 
-	grid_file, _ := os.ReadFile("20x20_grid.txt") // grab the numbers from the file
-	var data_without_newlines string = strings.ReplaceAll(string(grid_file), "\n", "")
-	var condensed_data string = strings.ReplaceAll(string(data_without_newlines), " ", "")
+	grid_file, _ := os.ReadFile("20x20_grid.txt")                                          // grab the numbers from the file
+	var data_without_newlines string = strings.ReplaceAll(string(grid_file), "\n", "")     // remove newline characters
+	var condensed_data string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
 
 	fmt.Println("data:", string(condensed_data))                                                          // for debugging
 	fmt.Println("length of data:", len(condensed_data), "| data index of 0:", string(condensed_data[41])) // for debugging
 
-	var twoD [20][20]int
-	fmt.Println("2d: ", twoD)
+	var testdata string = "01020304050607080910111213141516"
+
+	var twoD [4][4]int
+	fmt.Println("testdata:", twoD)
+	fmt.Println("length of testdata:", len(testdata))
+
+	for i := 0; i <= 3; i++ {
+		for j := 0; j <= 3; j++ {
+			tens_digit := string(testdata[(8*i)+(2*j)])
+			ones_digit := string(testdata[(8*i)+(2*j)+1])
+			fmt.Println(i, j, "|", tens_digit, ones_digit)
+
+		}
+	}
 
 }
 
