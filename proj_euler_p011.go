@@ -16,18 +16,22 @@ func main() {
 	fmt.Println("data:", string(condensed_data))                                                          // for debugging
 	fmt.Println("length of data:", len(condensed_data), "| data index of 0:", string(condensed_data[41])) // for debugging
 
-	var twoD [20][20]int
-
+	two_dimensional_slice := make([][]int, 20)
 	for i := 0; i <= 19; i++ {
+
+		two_dimensional_slice[i] = make([]int, 20)
+
 		for j := 0; j <= 19; j++ {
 			tens_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)]))
 			ones_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)+1])) // access the next index
-			twoD[i][j] = (tens_digit * 10) + (ones_digit)
-
-			fmt.Println(i, j, "|", tens_digit, ones_digit) // for debugging
+			two_dimensional_slice[i][j] = (tens_digit * 10) + (ones_digit)        // assign the two-digit number to the two-dimensional array
 		}
+		fmt.Println(two_dimensional_slice)
 	}
-	fmt.Println(twoD) // for debugging
+}
+
+func find_largest_product_up_and_down([]int) int {
+	return 4
 }
 
 // I need four functions:
