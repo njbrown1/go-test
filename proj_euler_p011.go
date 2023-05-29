@@ -16,23 +16,18 @@ func main() {
 	fmt.Println("data:", string(condensed_data))                                                          // for debugging
 	fmt.Println("length of data:", len(condensed_data), "| data index of 0:", string(condensed_data[41])) // for debugging
 
-	var testdata string = "01020304050607080910111213141516"
+	var twoD [20][20]int
 
-	var twoD [4][4]int
-	fmt.Println("testdata:", twoD)
-	fmt.Println("length of testdata:", len(testdata))
-
-	for i := 0; i <= 3; i++ {
-		for j := 0; j <= 3; j++ {
-			tens_digit, _ := strconv.Atoi(string(testdata[(8*i)+(2*j)]))   //
-			ones_digit, _ := strconv.Atoi(string(testdata[(8*i)+(2*j)+1])) // access the next index
+	for i := 0; i <= 19; i++ {
+		for j := 0; j <= 19; j++ {
+			tens_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)]))
+			ones_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)+1])) // access the next index
 			twoD[i][j] = (tens_digit * 10) + (ones_digit)
 
-			fmt.Println(i, j, "|", tens_digit, ones_digit)
-			fmt.Println(twoD)
+			fmt.Println(i, j, "|", tens_digit, ones_digit) // for debugging
 		}
 	}
-
+	fmt.Println(twoD) // for debugging
 }
 
 // I need four functions:
