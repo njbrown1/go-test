@@ -3,45 +3,22 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
+	// "strconv"
 	"strings"
 )
 
 func main() {
 
-	grid_file, _ := os.ReadFile("20x20_grid.txt")                      // grab the numbers from the file
-	var data string = strings.ReplaceAll(string(grid_file), "\n", " ") // convert newline characters to spaces
-	data = strings.ReplaceAll(string(grid_file), " ", "")              // remove spaces
-	// var initial_slice []int
+	grid_file, _ := os.ReadFile("20x20_grid.txt") // grab the numbers from the file
+	var data_without_newlines string = strings.ReplaceAll(string(grid_file), "\n", "")
+	var condensed_data string = strings.ReplaceAll(string(data_without_newlines), " ", "")
 
-	fmt.Println(string(data)) // for debugging
-	fmt.Println(len(data))    // for debugging
-
-	// for i := 0; i <= 57; {
-
-	// 	first_digit, _ := strconv.Atoi(string(data[i]))
-	// 	second_digit, _ := strconv.Atoi(string(data[i+1]))
-	// 	initial_slice = append(initial_slice, first_digit*10+second_digit)
-	//	i = i + 3
-	//	fmt.Printf("%02d\n", initial_slice) // for debugging
-	// }
+	fmt.Println("data:", string(condensed_data))                                                          // for debugging
+	fmt.Println("length of data:", len(condensed_data), "| data index of 0:", string(condensed_data[41])) // for debugging
 
 	var twoD [20][20]int
-	for i := 0; i <= 20; {
-		for j := 0; j <= 20; {
-
-			tens_digit, _ := strconv.Atoi(string(data[i]))
-			ones_digit, _ := strconv.Atoi(string(data[i+1]))
-			two_digit_number := tens_digit*10 + ones_digit
-
-			twoD[i][j] = two_digit_number
-
-			j = j + 3
-		}
-		i = i + 60
-	}
 	fmt.Println("2d: ", twoD)
-	fmt.Println(data)
+
 }
 
 // I need four functions:
