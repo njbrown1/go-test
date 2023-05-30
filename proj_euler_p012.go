@@ -20,17 +20,14 @@ func main() {
 	}
 }
 
-func find_x_divisors_of_n(n int) int {
+func find_x_divisors_of_n(n int) int { // takes a number (n) as the input, finds the factors of n, then returns the NUMBER of factors of n (as an integer)
 
-	var factors_slice []int
+	var factors_slice []int                                    // initialize an empty slice that factors will be added to
 	square_root_of_n := int(math.Floor(math.Sqrt(float64(n)))) // finds square root of n, rounded DOWN
 
 	for i := 1; i <= square_root_of_n; i++ {
-
 		if n%i == 0 {
-
 			is_i_the_square_root_of_n := float64(i) == math.Sqrt(float64(n))
-
 			if is_i_the_square_root_of_n == true {
 				factors_slice = append(factors_slice, i) // append the factor only ONCE
 			} else {
