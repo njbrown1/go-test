@@ -1,26 +1,29 @@
 package main
 
-import "fmt"
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 
-	// over_500_divisors := false
-	for number := 1; number <= 100000000; number++ { // 100000000 is just an obscenely large number
+	triangular_number_increment := 1
+	for number := 1; number <= 100000000; number = number + triangular_number_increment { // 100000000 is just an obscenely large number
 		num_of_factors := find_x_divisors_of_n(number)
 		fmt.Println("there are", num_of_factors, "factors of the number", number)
 
-		if num_of_factors > 100 { // if the number of factors exceeds 50, end the loop
-			fmt.Println("The first regular number with over 500 factors is:", number)
+		if num_of_factors > 500 { // if the number of factors exceeds 500, end the loop
+			fmt.Println("The first triangular number with over 500 factors is:", number)
 			break
 		}
+		triangular_number_increment++
 	}
 }
 
 func find_x_divisors_of_n(n int) int {
 
 	var factors_slice []int
-	square_root_of_n := int(math.Floor(math.Sqrt(float64(n)))) // finds square root of n, rounded up
+	square_root_of_n := int(math.Floor(math.Sqrt(float64(n)))) // finds square root of n, rounded DOWN
 
 	for i := 1; i <= square_root_of_n; i++ {
 
