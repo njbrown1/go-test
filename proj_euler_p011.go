@@ -16,24 +16,29 @@ func main() {
 	two_dimensional_slice := make([][]int, 20)
 
 	for i := 0; i <= 19; i++ {
-
-		two_dimensional_slice[i] = make([]int, 20)
-
+		two_dimensional_slice[i] = make([]int, 20) // make the inner slices with length 20
 		for j := 0; j <= 19; j++ {
 			tens_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)]))
-			ones_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)+1])) // access the next index
-			two_dimensional_slice[i][j] = (tens_digit * 10) + (ones_digit)        // assign the two-digit number to the two-dimensional array
+			ones_digit, _ := strconv.Atoi(string(condensed_data[(40*i)+(2*j)+1]))
+			two_dimensional_slice[i][j] = (tens_digit * 10) + (ones_digit) // assign the two-digit number to the two-dimensional array
 		}
 	}
+
 	fmt.Println(find_largest_product_up_and_down(two_dimensional_slice))
 	fmt.Println(find_largest_product_left_and_right(two_dimensional_slice))
 	fmt.Println(find_largest_product_up_right_diagonally(two_dimensional_slice))
 	fmt.Println(find_largest_product_down_right_diagonally(two_dimensional_slice))
+
+	// I just had it print the largest product for all four functions, then identified the largest number.
+	// solved! answer: 70600674
 }
 
 // NOTES ON THE FOUR FUNCTIONS:
 // 1. I first wrote the function find_largest_product_up_and_down, and I wanted to make the function extremely reusable.
 // The only difference between all four functions is the presence of y++, y--, x++, and x--.
+// 2. Each function accesses every number in the grid as a 'starting point', and then continues to go in the direction specified
+// in the function name.
+// 3. There might be a better way to do this, but copy-pasting code is really easy.
 
 func find_largest_product_up_and_down(grid [][]int) int { // input: the two_dimensional_slice (grid) of numbers. output: the largest product.
 
@@ -49,7 +54,7 @@ func find_largest_product_up_and_down(grid [][]int) int { // input: the two_dime
 
 			for k := 1; k <= 4; k++ {
 				if out_of_range == true {
-					break
+					break // if x OR y is out of range, then nothing else is added to four_number_slice
 				}
 				four_number_slice = append(four_number_slice, grid[y][x])
 				y++
