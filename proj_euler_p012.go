@@ -5,18 +5,16 @@ import "math"
 
 func main() {
 
-	fmt.Println(find_x_divisors_of_n(150))
-
 	// over_500_divisors := false
-	// for number := 1; over_500_divisors == true; number++ {
-	// 	num_of_factors := find_x_divisors_of_n(number)
-	//	fmt.Println("there are", num_of_factors, "factors of the number", number)
-	//
-	//	if num_of_factors > 50 { // if the number of factors exceeds 50, end the loop
-	//		over_500_divisors = true
-	//		fmt.Println(number)
-	//	}
-	// }
+	for number := 1; number <= 100000000; number++ { // 100000000 is just an obscenely large number
+		num_of_factors := find_x_divisors_of_n(number)
+		fmt.Println("there are", num_of_factors, "factors of the number", number)
+
+		if num_of_factors > 100 { // if the number of factors exceeds 50, end the loop
+			fmt.Println("The first regular number with over 500 factors is:", number)
+			break
+		}
+	}
 }
 
 func find_x_divisors_of_n(n int) int {
@@ -32,10 +30,8 @@ func find_x_divisors_of_n(n int) int {
 
 			if is_i_the_square_root_of_n == true {
 				factors_slice = append(factors_slice, i) // append the factor only ONCE
-				fmt.Println(factors_slice)               // for debugging
 			} else {
 				factors_slice = append(factors_slice, i, (n / i)) // append the factor and its factor pair
-				fmt.Println(factors_slice)                        // for debugging
 			}
 		}
 	}
