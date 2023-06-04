@@ -13,15 +13,22 @@ func main() {
 	var data_without_newlines string = strings.ReplaceAll(string(numbers_file), "\n", "")     // remove newline characters
 	var condensed_numbers string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
 
-	// var fifty_digit_number_slice []int
+	var fifty_digit_number_slice []int
+	sum_of_numbers := 0
 
 	for i := 0; i <= 4999; i = i + 50 {
 		var fifty_digit_string string
-		for j := 0; j <= 49; j++ {
+		for j := 0; j <= 12; j++ {
 			fifty_digit_string += string(condensed_numbers[i+j])
 		}
 		fmt.Println(fifty_digit_string)
 		number, _ := strconv.Atoi(fifty_digit_string)
-		fmt.Println(int(number))
+		fifty_digit_number_slice = append(fifty_digit_number_slice, number)
 	}
+
+	for i := 0; i <= 99; i++ {
+		sum_of_numbers = sum_of_numbers + fifty_digit_number_slice[i]
+	}
+
+	fmt.Println("the sum of the numbers is:", sum_of_numbers)
 }
