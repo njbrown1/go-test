@@ -18,11 +18,11 @@ func find_length_of_collatz_sequence(number int) int { // this function takes an
 
 func main() {
 	longest_number_of_terms := 0
-	for i := 1; i <= 999999; i++ {
+	for i := 1; i <= 999999; i++ { // check all numbers under one million
 		number_of_terms_result := find_length_of_collatz_sequence(i)
 		if number_of_terms_result > longest_number_of_terms {
 			longest_number_of_terms = number_of_terms_result
-			fmt.Println(i, "has", number_of_terms_result, "terms in its Collatz sequence")
+			fmt.Println(i, "has", number_of_terms_result, "terms in its Collatz sequence") // solved! answer: 837799
 		}
 	}
 }
