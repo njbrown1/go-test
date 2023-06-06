@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
+	"math/big"
 )
 
 func factorialOfNumber(number int64) string {
-	k := int64(1)
-	for i := int64(1); i <= number; i++ {
-		k *= i
+
+	big_int_number := big.NewInt(number)
+	current_product := big.NewInt(1)
+	i := big.NewInt(1)
+
+	for i <= big_int_number; i++ {
+		current_product *= i
 	}
 	return fmt.Sprint(k)
 }
