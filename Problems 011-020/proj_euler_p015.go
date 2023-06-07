@@ -20,7 +20,12 @@ func factorial_of_number(number int64) *big.Int {
 
 func main() {
 
-	var L int64 = 4
+	// funnily enough, I came up with this problem myself! I remembered some vague answer / way to use combinatorics
+	// and after some pain importing the combin package, I figured out that on an LxL board, running the combination
+	// nCr (where) n = 2L and r = L gives the correct answer experimentally. there's probably a better way to do this,
+	// but I cannot be bothered. I made a whole Math StackExchange post on it too.
+
+	var L int64 = 20
 
 	final_numerator := factorial_of_number(2 * L) // the numerator is 40!
 
