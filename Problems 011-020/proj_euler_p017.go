@@ -6,17 +6,17 @@ import (
 	"strconv"
 )
 
-func add_leading_zeros(three_digit_number int) string {
-	var new_number string
-	var number string = fmt.Sprint(three_digit_number)
-	if three_digit_number < 10 {
-		new_number = "00" + number
-	} else if three_digit_number < 100 {
-		new_number = "0" + number
-	} else if three_digit_number < 1000 {
-		new_number = number
+func add_leading_zeros(number int) string { // takes any number from 0-999, and returns a string with leading zeros added (if the original number is only one or two digits).
+	var number_string string              // 'number_string' is the output that will be returned.
+	var input string = fmt.Sprint(number) // 'input' is the string equivalent of 'number'. 'input' is created so string concatenation is possible.
+	if number < 10 {
+		number_string = "00" + input // if number only has one digit, add TWO leading zeros.
+	} else if number < 100 {
+		number_string = "0" + input // if number has two digits, add ONE leading zeros.
+	} else if number < 1000 {
+		number_string = "" + input // if number has three digits, add NO leading zeros.
 	}
-	return new_number
+	return number_string
 }
 
 func find_length_of_written_number(three_digit_number string) int {
@@ -30,5 +30,5 @@ func find_length_of_written_number(three_digit_number string) int {
 
 func main() {
 	fmt.Println("hello world")
-	fmt.Println(add_leading_zeros(2))
+	fmt.Println(add_leading_zeros(0))
 }
