@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	// "math"
 	"strconv"
 )
 
-func add_leading_zeros(number int) string { // takes any number from 0-999, and returns a string with leading zeros added (if the original number is only one or two digits).
+func add_leading_zeros(number int) string { // takes any positive integer from 0-999, and returns a string with leading zeros added (if the original number is only one or two digits).
 	var number_string string              // 'number_string' is the output that will be returned.
 	var input string = fmt.Sprint(number) // 'input' is the string equivalent of 'number'. 'input' is created so string concatenation is possible.
 	if number < 10 {
@@ -20,7 +19,8 @@ func add_leading_zeros(number int) string { // takes any number from 0-999, and 
 }
 
 func find_length_of_written_number(three_digit_number string) int {
-	// length_of_written_number := 0
+
+	length_of_written_number := 0
 
 	spellings := make(map[int]int)
 	one_digit_words := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
@@ -45,14 +45,16 @@ func find_length_of_written_number(three_digit_number string) int {
 	number_divisible_by_100 := tens_digit == 0 && ones_digit == 0
 	// number_contains_irregular_spelling := tens_digit == 1 // ten, eleven, twelve, thirteen, etc.
 
-	if number_divisible_by_100 == true {
-		return 5
+	if number_divisible_by_100 == true { // covers all of the integers that are multiples of 100.
+		length_of_written_number = spellings[hundreds_digit] + len("hundred")
+	} else if number_divisible_by_100 == false {
+
 	}
 
-	return 4
+	return length_of_written_number
 }
 
 func main() {
 	fmt.Println("hello world")
-	fmt.Println(find_length_of_written_number(add_leading_zeros(297)))
+	fmt.Println(find_length_of_written_number(add_leading_zeros(0)))
 }
