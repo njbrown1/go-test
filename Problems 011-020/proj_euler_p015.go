@@ -19,6 +19,18 @@ func factorial_of_number(number int64) *big.Int {
 }
 
 func main() {
-	result := factorial_of_number(40)
-	fmt.Println(result)
+
+	var L int64 = 4
+
+	final_numerator := factorial_of_number(2 * L) // the numerator is 40!
+
+	denominator1 := factorial_of_number(L)
+	denominator2 := factorial_of_number(L)
+	final_denominator := big.NewInt(0)
+	final_denominator.Mul(denominator1, denominator2)
+
+	valid_paths_on_a_LxL_board := big.NewInt(0)
+	valid_paths_on_a_LxL_board.Div(final_numerator, final_denominator)
+
+	fmt.Println(valid_paths_on_a_LxL_board)
 }
