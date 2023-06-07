@@ -20,15 +20,23 @@ func add_leading_zeros(number int) string { // takes any number from 0-999, and 
 }
 
 func find_length_of_written_number(three_digit_number string) int {
+	// length_of_written_number := 0
 	hundreds_digit, _ := strconv.Atoi(string(three_digit_number[0]))
 	tens_digit, _ := strconv.Atoi(string(three_digit_number[1]))
 	ones_digit, _ := strconv.Atoi(string(three_digit_number[2]))
 	fmt.Println(hundreds_digit, tens_digit, ones_digit)
+
+	number_divisible_by_100 := tens_digit == 0 && ones_digit == 0
+	// number_contains_irregular_spelling := tens_digit == 1 // ten, eleven, twelve, thirteen, etc.
+
+	if number_divisible_by_100 == true {
+		return 5
+	}
 
 	return 4
 }
 
 func main() {
 	fmt.Println("hello world")
-	fmt.Println(add_leading_zeros(0))
+	fmt.Println(find_length_of_written_number(add_leading_zeros(297)))
 }
