@@ -7,14 +7,12 @@ import (
 
 func factorialOfNumber(number int64) string {
 
-	big_int_number := big.NewInt(number)
-	current_product := big.NewInt(1)
-	i := big.NewInt(1)
-
-	for i <= big_int_number; i++ {
-		current_product *= i
+	product := big.NewInt(1)
+	for i := 1; i <= int(number); i++ {
+		product.Mul(product, big.NewInt(int64(i)))
 	}
-	return fmt.Sprint(k)
+	return_string := product.String()
+	return return_string
 }
 
 func main() {
