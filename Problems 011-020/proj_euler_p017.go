@@ -51,21 +51,23 @@ func find_length_of_written_number(three_digit_number string) int {
 	// 4. sets boolean values for use if a number doesn't follow typical naming rules.
 
 	number_divisible_by_100 := tens_digit == 0 && ones_digit == 0
-	number_contains_irregular_spelling := tens_digit == 1 // ten, eleven, twelve, thirteen, etc.
+	number_contains_irregular_spelling := tens_digit == 1
+
+	// 5. based on if/else statements, determines the length of any positive integer between 1 and 999.
 
 	if number_divisible_by_100 == true && hundreds_digit != 0 { // covers all of the integers that are multiples of 100.
 		length_of_written_number = spellings[hundreds_digit] + len("hundred")
 	} else if number_contains_irregular_spelling == true {
 		if hundreds_digit == 0 {
-			length_of_written_number = spellings[tens_digit*10+ones_digit]
+			length_of_written_number = spellings[10+ones_digit]
 		} else {
 			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit*10+ones_digit]
 		}
 	} else {
 		if hundreds_digit == 0 {
-			length_of_written_number = spellings[tens_digit] + spellings[ones_digit]
+			length_of_written_number = spellings[tens_digit*10] + spellings[ones_digit]
 		} else {
-			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit] + spellings[ones_digit]
+			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit*10] + spellings[ones_digit]
 		}
 	}
 	return length_of_written_number
