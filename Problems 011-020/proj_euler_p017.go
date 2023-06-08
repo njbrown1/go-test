@@ -43,18 +43,27 @@ func find_length_of_written_number(three_digit_number string) int {
 	fmt.Println(hundreds_digit, tens_digit, ones_digit)
 
 	number_divisible_by_100 := tens_digit == 0 && ones_digit == 0
-	// number_contains_irregular_spelling := tens_digit == 1 // ten, eleven, twelve, thirteen, etc.
+	number_contains_irregular_spelling := tens_digit == 1 // ten, eleven, twelve, thirteen, etc.
 
-	if number_divisible_by_100 == true { // covers all of the integers that are multiples of 100.
+	if number_divisible_by_100 == true && hundreds_digit != 0 { // covers all of the integers that are multiples of 100.
 		length_of_written_number = spellings[hundreds_digit] + len("hundred")
-	} else if number_divisible_by_100 == false {
-
+	} else if number_contains_irregular_spelling == true {
+		if hundreds_digit == 0 {
+			length_of_written_number = spellings[tens_digit*10+ones_digit]
+		} else {
+			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit*10+ones_digit]
+		}
+	} else {
+		if hundreds_digit == 0 {
+			length_of_written_number = spellings[tens_digit] + spellings[ones_digit]
+		} else {
+			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit] + spellings[ones_digit]
+		}
 	}
-
 	return length_of_written_number
 }
 
 func main() {
 	fmt.Println("hello world")
-	fmt.Println(find_length_of_written_number(add_leading_zeros(0)))
+	fmt.Println(find_length_of_written_number(add_leading_zeros(999)))
 }
