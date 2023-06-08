@@ -20,12 +20,15 @@ func add_leading_zeros(number int) string { // takes any positive integer from 0
 
 func find_length_of_written_number(three_digit_number string) int {
 
-	length_of_written_number := 0
+	// what the following code does:
+	// 1. initializes an empty map called 'spellings' and three different slices of written word lengths.
 
 	spellings := make(map[int]int)
 	one_digit_words := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 	tens_words := []string{"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}
 	irregular_words := []string{"eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"}
+
+	// 2. assigns the key and value to the corresponding number and LENGTH of written number, respectively.
 
 	for i, word := range one_digit_words {
 		spellings[i+1] = len(word)
@@ -37,10 +40,15 @@ func find_length_of_written_number(three_digit_number string) int {
 		spellings[(i + 11)] = len(word)
 	}
 
+	// 3. sets hundreds_digit, tens_digit, and ones_digit according to the input string 'three_digit_number'.
+
 	hundreds_digit, _ := strconv.Atoi(string(three_digit_number[0]))
 	tens_digit, _ := strconv.Atoi(string(three_digit_number[1]))
 	ones_digit, _ := strconv.Atoi(string(three_digit_number[2]))
+	length_of_written_number := 0
 	fmt.Println(hundreds_digit, tens_digit, ones_digit)
+
+	// 4. sets boolean values for use if a number doesn't follow typical naming rules.
 
 	number_divisible_by_100 := tens_digit == 0 && ones_digit == 0
 	number_contains_irregular_spelling := tens_digit == 1 // ten, eleven, twelve, thirteen, etc.
