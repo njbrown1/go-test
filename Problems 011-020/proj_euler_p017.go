@@ -46,7 +46,6 @@ func find_length_of_written_number(three_digit_number string) int {
 	tens_digit, _ := strconv.Atoi(string(three_digit_number[1]))
 	ones_digit, _ := strconv.Atoi(string(three_digit_number[2]))
 	length_of_written_number := 0
-	fmt.Println(hundreds_digit, tens_digit, ones_digit)
 
 	// 4. sets boolean values for use if a number doesn't follow typical naming rules.
 
@@ -55,25 +54,35 @@ func find_length_of_written_number(three_digit_number string) int {
 
 	// 5. based on if/else statements, determines the length of any positive integer between 1 and 999.
 
-	if number_divisible_by_100 == true && hundreds_digit != 0 { // covers all of the integers that are multiples of 100.
+	if number_divisible_by_100 == true && hundreds_digit != 0 { // covers all  integers that are multiples of 100.
 		length_of_written_number = spellings[hundreds_digit] + len("hundred")
-	} else if number_contains_irregular_spelling == true {
+
+	} else if number_contains_irregular_spelling == true { // covers all integers with irregular spelling.
 		if hundreds_digit == 0 {
 			length_of_written_number = spellings[10+ones_digit]
 		} else {
 			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit*10+ones_digit]
 		}
-	} else {
+
+	} else { // covers all other integers.
 		if hundreds_digit == 0 {
 			length_of_written_number = spellings[tens_digit*10] + spellings[ones_digit]
 		} else {
 			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit*10] + spellings[ones_digit]
 		}
 	}
+	fmt.Println(hundreds_digit, tens_digit, ones_digit, "| written_length:", length_of_written_number)
 	return length_of_written_number
 }
 
 func main() {
-	fmt.Println("hello world")
-	fmt.Println(find_length_of_written_number(add_leading_zeros(999)))
+
+	sum_of_written_numbers := 0
+
+	for i := 1; i <= 5; i++ {
+		length_of_written_number := find_length_of_written_number(add_leading_zeros(i))
+		sum_of_written_numbers += length_of_written_number
+	}
+
+	fmt.Println(sum_of_written_numbers)
 }
