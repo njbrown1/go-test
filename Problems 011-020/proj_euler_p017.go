@@ -25,7 +25,7 @@ func find_length_of_written_number(three_digit_number string) int {
 
 	spellings := make(map[int]int)
 	one_digit_words := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
-	tens_words := []string{"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}
+	tens_words := []string{"ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}
 	irregular_words := []string{"eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"}
 
 	// 2. assigns the key and value to the corresponding number and LENGTH of written number, respectively.
@@ -34,7 +34,7 @@ func find_length_of_written_number(three_digit_number string) int {
 		spellings[i+1] = len(word)
 	}
 	for i, word := range tens_words {
-		spellings[(i+2)*10] = len(word)
+		spellings[(i+1)*10] = len(word)
 	}
 	for i, word := range irregular_words {
 		spellings[(i + 11)] = len(word)
@@ -79,10 +79,10 @@ func main() {
 
 	sum_of_written_numbers := 0
 
-	for i := 1; i <= 5; i++ {
+	for i := 1; i <= 999; i++ {
 		length_of_written_number := find_length_of_written_number(add_leading_zeros(i))
 		sum_of_written_numbers += length_of_written_number
 	}
 
-	fmt.Println(sum_of_written_numbers)
+	fmt.Println("sum_of_written_numbers:", sum_of_written_numbers+len("onethousand"))
 }
