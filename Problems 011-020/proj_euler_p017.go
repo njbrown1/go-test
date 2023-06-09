@@ -6,7 +6,7 @@ import (
 )
 
 func add_leading_zeros(number int) string { // takes any positive integer from 0-999, and returns a string with leading zeros added (if the original number is only one or two digits).
-	var number_string string              // 'number_string' is the output that will be returned.
+	var number_string string
 	var input string = fmt.Sprint(number) // 'input' is the string equivalent of 'number'. 'input' is created so string concatenation is possible.
 	if number < 10 {
 		number_string = "00" + input // if number only has one digit, add TWO leading zeros.
@@ -71,18 +71,15 @@ func find_length_of_written_number(three_digit_number string) int {
 			length_of_written_number = spellings[hundreds_digit] + len("hundredand") + spellings[tens_digit*10] + spellings[ones_digit]
 		}
 	}
-	fmt.Println(hundreds_digit, tens_digit, ones_digit, "| written_length:", length_of_written_number)
+	fmt.Println(hundreds_digit, tens_digit, ones_digit, "| written_length:", length_of_written_number) // for debugging – not strictly necessary
 	return length_of_written_number
 }
 
 func main() {
-
 	sum_of_written_numbers := 0
-
 	for i := 1; i <= 999; i++ {
 		length_of_written_number := find_length_of_written_number(add_leading_zeros(i))
 		sum_of_written_numbers += length_of_written_number
 	}
-
 	fmt.Println("sum_of_written_numbers:", sum_of_written_numbers+len("onethousand"))
 }
