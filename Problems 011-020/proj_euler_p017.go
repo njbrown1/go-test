@@ -20,7 +20,7 @@ func add_leading_zeros(number int) string { // takes any positive integer from 0
 
 func find_length_of_written_number(three_digit_number string) int {
 
-	// what the following code does:
+	// what the following function does, step-by-step:
 	// 1. initializes an empty map called 'spellings' and three different slices of written word lengths.
 
 	spellings := make(map[int]int)
@@ -54,7 +54,7 @@ func find_length_of_written_number(three_digit_number string) int {
 
 	// 5. based on if/else statements, determines the length of any positive integer between 1 and 999.
 
-	if number_divisible_by_100 == true && hundreds_digit != 0 { // covers all  integers that are multiples of 100.
+	if number_divisible_by_100 == true && hundreds_digit != 0 { // covers all integers that are multiples of 100.
 		length_of_written_number = spellings[hundreds_digit] + len("hundred")
 
 	} else if number_contains_irregular_spelling == true { // covers all integers with irregular spelling.
