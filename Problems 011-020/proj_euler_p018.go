@@ -12,9 +12,13 @@ import (
 // 1. I define triangle_slice[x][y] as the (y + 1)th number in the (x + 1)th row. examples:
 // | triangle_slice[0][0] = 75 | triangle_slice[2][2] = 82 | triangle_slice[4][0] = 20 |
 
-// 2. the whole first section of the code is devoted to extracting the raw file of numbers
+// 2. at each number (signified by a unique triangle_slice[x][y]), you must move EITHER down
+// and left OR down and right. this means that triangle_slice[x][y] -> triangle_slice[x + 1][y]
+// OR triangle_slice[x][y] -> triangle_slice[x + 1][y + 1].
+
+// 3. the whole first section of the code is devoted to extracting the raw file of numbers
 // from triangle_numbers.txt, turning it into condensed_numbers (ie. no newlines or spaces)
-// and putting the numbers into the two-dimensional slice (triangle_slice).
+// and putting the numbers into triangle_slice (a two-dimensional slice).
 
 func find_starting_index_of_slice_n(n int) int {
 	starting_index := 0
@@ -35,14 +39,14 @@ func main() {
 
 	for i := 0; i <= 14; i++ {
 		triangle_slice[i] = make([]int, i+1)
+		starting_retrieval_index := find_starting_index_of_slice_n(i)
 		for j := 0; j <= i; j++ {
-			tens_digit, _ := strconv.Atoi(string(condensed_numbers[2*j]))
-			ones_digit, _ := strconv.Atoi(string(condensed_numbers[2*j+1]))
+			tens_digit, _ := strconv.Atoi(string(condensed_numbers[starting_retrieval_index+2*j]))
+			ones_digit, _ := strconv.Atoi(string(condensed_numbers[starting_retrieval_index+2*j+1]))
 			triangle_slice[i][j] = (tens_digit * 10) + (ones_digit) // assign the two-digit number to the two-dimensional array
 		}
 	}
 
 	fmt.Println(triangle_slice)
-	fmt.Println(len(triangle_slice[14]))
 	fmt.Println(find_starting_index_of_slice_n(4))
 }
