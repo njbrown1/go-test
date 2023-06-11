@@ -49,7 +49,7 @@ func retrieve_element_from_triangle(x int, y int) int {
 func return_14_digit_binary_number(base_10_number int64) string {
 	binary_number := strconv.FormatInt(base_10_number, 2)     // convert the base_10_number to binary
 	number_of_leading_zeros_needed := 14 - len(binary_number) // calculate the number of leading zeros missing (to make the binary number 14 digits long)
-	for i := 1; i < number_of_leading_zeros_needed; i++ {     // add the necessary number of missing zeros
+	for i := 1; i <= number_of_leading_zeros_needed; i++ {    // add the necessary number of missing zeros
 		binary_number = "0" + binary_number
 	}
 	return binary_number
@@ -71,14 +71,18 @@ func calculate_sum_of_binary_path(final_binary_number string) int {
 		} else {
 		}
 		total_sum += retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX)
-		fmt.Println("crI:", current_row_INDEX, "| cnI:", current_number_INDEX,
+		fmt.Println(
+			"crI:", current_row_INDEX,
+			"| cnI:", current_number_INDEX,
 			"| ith digit:", ith_digit_of_final_binary_number,
-			"| element_from_triangle:", retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX))
+			"| element_from_triangle:", retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX),
+		)
 	}
 	return total_sum
 }
 
 func main() {
-	fmt.Println(return_14_digit_binary_number(207))
-	fmt.Println(calculate_sum_of_binary_path("10000000000001"))
+	final_binary_number := return_14_digit_binary_number(127)
+	total_sum := calculate_sum_of_binary_path(final_binary_number)
+	fmt.Println("final_binary_number:", final_binary_number, "total_sum:", total_sum)
 }
