@@ -63,16 +63,22 @@ func calculate_sum_of_binary_path(final_binary_number string) int {
 
 	for i := 1; i <= 14; i++ {
 		current_row_INDEX++
-		if final_binary_number[i-1] == 0 {
+
+		ith_digit_of_final_binary_number, _ := strconv.Atoi(string(final_binary_number[i-1]))
+
+		if ith_digit_of_final_binary_number == 1 {
 			current_number_INDEX++
 		} else {
 		}
 		total_sum += retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX)
+		fmt.Println("crI:", current_row_INDEX, "| cnI:", current_number_INDEX,
+			"| ith digit:", ith_digit_of_final_binary_number,
+			"| element_from_triangle:", retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX))
 	}
 	return total_sum
 }
 
 func main() {
 	fmt.Println(return_14_digit_binary_number(207))
-	fmt.Println(calculate_sum_of_binary_path("00000000000001"))
+	fmt.Println(calculate_sum_of_binary_path("10000000000001"))
 }
