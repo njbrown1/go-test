@@ -18,8 +18,8 @@ func main() {
 	for i := 0; i <= 14; i++ {
 		two_dimensional_slice[i] = make([]int, i+1)
 		for j := 0; j <= i; j++ {
-			tens_digit, _ := strconv.Atoi(string(condensed_numbers[2]))
-			ones_digit, _ := strconv.Atoi(string(condensed_numbers[2]))
+			tens_digit, _ := strconv.Atoi(string(condensed_numbers[2*j]))
+			ones_digit, _ := strconv.Atoi(string(condensed_numbers[2*i+2*j+1]))
 			two_dimensional_slice[i][j] = (tens_digit * 10) + (ones_digit) // assign the two-digit number to the two-dimensional array
 		}
 	}
