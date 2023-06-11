@@ -73,18 +73,24 @@ func calculate_sum_of_binary_path(final_binary_number string) int {
 		} else {
 		}
 		total_sum += retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX)
-		fmt.Println(
-			"crI:", current_row_INDEX,
-			"| cnI:", current_number_INDEX,
-			"| ith digit:", ith_digit_of_final_binary_number,
-			"| element_from_triangle:", retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX),
-		)
+		// fmt.Println(
+		//	"crI:", current_row_INDEX,
+		//	"| cnI:", current_number_INDEX,
+		//	"| ith digit:", ith_digit_of_final_binary_number,
+		//	"| element_from_triangle:", retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX),
+		// )
 	}
 	return total_sum
 }
 
 func main() {
-	final_binary_number := return_14_digit_binary_number(127)
-	total_sum := calculate_sum_of_binary_path(final_binary_number)
-	fmt.Println("final_binary_number:", final_binary_number, "total_sum:", total_sum)
+	largest_path_sum := 0
+	for base_10_input := 0; base_10_input <= 16383; base_10_input++ {
+		final_binary_number := return_14_digit_binary_number(int64(base_10_input))
+		total_sum := calculate_sum_of_binary_path(final_binary_number)
+		if total_sum > largest_path_sum {
+			largest_path_sum = total_sum
+			fmt.Println("ALERT: new largest sum of:", total_sum)
+		}
+	}
 }
