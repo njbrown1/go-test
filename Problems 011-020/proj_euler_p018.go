@@ -25,7 +25,6 @@ func retrieve_element_from_triangle(x int, y int) int {
 	numbers_file, _ := os.ReadFile("triangle_numbers.txt")                                    // grab the numbers from the file
 	var data_without_newlines string = strings.ReplaceAll(string(numbers_file), "\n", "")     // remove newline characters
 	var condensed_numbers string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
-	fmt.Println(condensed_numbers)
 
 	triangle_slice := make([][]int, 15)
 
@@ -56,11 +55,24 @@ func return_14_digit_binary_number(base_10_number int64) string {
 	return binary_number
 }
 
-func calculate_sum_of_binary_path(final_binary_number int) int {
-	return 4
+func calculate_sum_of_binary_path(final_binary_number string) int {
+
+	current_row_INDEX := 0
+	current_number_INDEX := 0
+	total_sum := retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX)
+
+	for i := 1; i <= 14; i++ {
+		current_row_INDEX++
+		if final_binary_number[i-1] == 0 {
+			current_number_INDEX++
+		} else {
+		}
+		total_sum += retrieve_element_from_triangle(current_row_INDEX, current_number_INDEX)
+	}
+	return total_sum
 }
 
 func main() {
-	fmt.Println(retrieve_element_from_triangle(4, 0))
 	fmt.Println(return_14_digit_binary_number(207))
+	fmt.Println(calculate_sum_of_binary_path("00000000000001"))
 }
