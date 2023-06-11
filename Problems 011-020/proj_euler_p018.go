@@ -9,6 +9,10 @@ import (
 
 // this problem was very easy to conceptualize. here are a few things you should know:
 
+// retrieve_element_from_triangle is devoted to extracting the raw file of numbers
+// from triangle_numbers.txt, turning it into condensed_numbers (ie. no newlines or spaces)
+// and putting the numbers into triangle_slice (a two-dimensional slice).
+
 // 1. I define triangle_slice[x][y] as the (y + 1)th number in the (x + 1)th row. examples:
 // | triangle_slice[0][0] = 75 | triangle_slice[2][2] = 82 | triangle_slice[4][0] = 20 |
 
@@ -52,14 +56,11 @@ func return_14_digit_binary_number(base_10_number int64) string {
 	return binary_number
 }
 
+func calculate_sum_of_binary_path(final_binary_number int) int {
+	return 4
+}
+
 func main() {
-
-	// the whole first section of the code is devoted to extracting the raw file of numbers
-	// from triangle_numbers.txt, turning it into condensed_numbers (ie. no newlines or spaces)
-	// and putting the numbers into triangle_slice (a two-dimensional slice).
-
-	// for debugging
-
 	fmt.Println(retrieve_element_from_triangle(4, 0))
-	fmt.Println(return_14_digit_binary_number(2047))
+	fmt.Println(return_14_digit_binary_number(207))
 }
