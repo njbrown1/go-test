@@ -25,6 +25,15 @@ func find_starting_index_of_slice_n(n int) int {
 	return starting_index
 }
 
+func return_14_digit_binary_number(base_10_number int64) string {
+	binary_number := strconv.FormatInt(base_10_number, 16383) // convert the base_10_number to binary
+	number_of_leading_zeros_needed := 14 - len(binary_number) // calculate the number of leading zeros missing (to make the binary number 14 digits long)
+	for i := 1; i < number_of_leading_zeros_needed; i++ {
+		binary_number = "0" + binary_number
+	}
+	return binary_number
+}
+
 func main() {
 
 	// the whole first section of the code is devoted to extracting the raw file of numbers
@@ -52,5 +61,6 @@ func main() {
 
 	fmt.Println(triangle_slice)
 	fmt.Println(find_starting_index_of_slice_n(4))
-	fmt.Println(triangle_slice[0][0])
+	fmt.Println(triangle_slice[14][0])
+	fmt.Println(return_14_digit_binary_number(2047))
 }
