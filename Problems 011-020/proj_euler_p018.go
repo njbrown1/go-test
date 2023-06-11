@@ -16,10 +16,6 @@ import (
 // and left OR down and right. this means that triangle_slice[x][y] -> triangle_slice[x + 1][y]
 // OR triangle_slice[x][y] -> triangle_slice[x + 1][y + 1].
 
-// 3. the whole first section of the code is devoted to extracting the raw file of numbers
-// from triangle_numbers.txt, turning it into condensed_numbers (ie. no newlines or spaces)
-// and putting the numbers into triangle_slice (a two-dimensional slice).
-
 func find_starting_index_of_slice_n(n int) int {
 	starting_index := 0
 	for i := 0; i <= n; i++ {
@@ -30,6 +26,11 @@ func find_starting_index_of_slice_n(n int) int {
 }
 
 func main() {
+
+	// the whole first section of the code is devoted to extracting the raw file of numbers
+	// from triangle_numbers.txt, turning it into condensed_numbers (ie. no newlines or spaces)
+	// and putting the numbers into triangle_slice (a two-dimensional slice).
+
 	numbers_file, _ := os.ReadFile("triangle_numbers.txt")                                    // grab the numbers from the file
 	var data_without_newlines string = strings.ReplaceAll(string(numbers_file), "\n", "")     // remove newline characters
 	var condensed_numbers string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
@@ -47,6 +48,9 @@ func main() {
 		}
 	}
 
+	// for debugging
+
 	fmt.Println(triangle_slice)
 	fmt.Println(find_starting_index_of_slice_n(4))
+	fmt.Println(triangle_slice[0][0])
 }
