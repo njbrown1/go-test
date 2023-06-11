@@ -16,19 +16,37 @@ import (
 // and left OR down and right. this means that triangle_slice[x][y] -> triangle_slice[x + 1][y]
 // OR triangle_slice[x][y] -> triangle_slice[x + 1][y + 1].
 
-func find_starting_index_of_slice_n(n int) int {
-	starting_index := 0
-	for i := 0; i <= n; i++ {
-		starting_index += i
+func retrieve_element_from_triangle(x int, y int) int {
+
+	numbers_file, _ := os.ReadFile("triangle_numbers.txt")                                    // grab the numbers from the file
+	var data_without_newlines string = strings.ReplaceAll(string(numbers_file), "\n", "")     // remove newline characters
+	var condensed_numbers string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
+	fmt.Println(condensed_numbers)
+
+	triangle_slice := make([][]int, 15)
+
+	for i := 0; i <= 14; i++ {
+		triangle_slice[i] = make([]int, i+1)
+
+		starting_retrieval_index := 0
+		for k := 0; k <= i; k++ {
+			starting_retrieval_index += k
+		}
+		starting_retrieval_index *= 2
+
+		for j := 0; j <= i; j++ {
+			tens_digit, _ := strconv.Atoi(string(condensed_numbers[starting_retrieval_index+2*j]))
+			ones_digit, _ := strconv.Atoi(string(condensed_numbers[starting_retrieval_index+2*j+1]))
+			triangle_slice[i][j] = (tens_digit * 10) + (ones_digit) // assign the two-digit number to the two-dimensional array
+		}
 	}
-	starting_index *= 2
-	return starting_index
+	return triangle_slice[x][y]
 }
 
 func return_14_digit_binary_number(base_10_number int64) string {
-	binary_number := strconv.FormatInt(base_10_number, 16383) // convert the base_10_number to binary
+	binary_number := strconv.FormatInt(base_10_number, 2)     // convert the base_10_number to binary
 	number_of_leading_zeros_needed := 14 - len(binary_number) // calculate the number of leading zeros missing (to make the binary number 14 digits long)
-	for i := 1; i < number_of_leading_zeros_needed; i++ {
+	for i := 1; i < number_of_leading_zeros_needed; i++ {     // add the necessary number of missing zeros
 		binary_number = "0" + binary_number
 	}
 	return binary_number
@@ -40,27 +58,8 @@ func main() {
 	// from triangle_numbers.txt, turning it into condensed_numbers (ie. no newlines or spaces)
 	// and putting the numbers into triangle_slice (a two-dimensional slice).
 
-	numbers_file, _ := os.ReadFile("triangle_numbers.txt")                                    // grab the numbers from the file
-	var data_without_newlines string = strings.ReplaceAll(string(numbers_file), "\n", "")     // remove newline characters
-	var condensed_numbers string = strings.ReplaceAll(string(data_without_newlines), " ", "") // remove spaces
-	fmt.Println(condensed_numbers)
-
-	triangle_slice := make([][]int, 15)
-
-	for i := 0; i <= 14; i++ {
-		triangle_slice[i] = make([]int, i+1)
-		starting_retrieval_index := find_starting_index_of_slice_n(i)
-		for j := 0; j <= i; j++ {
-			tens_digit, _ := strconv.Atoi(string(condensed_numbers[starting_retrieval_index+2*j]))
-			ones_digit, _ := strconv.Atoi(string(condensed_numbers[starting_retrieval_index+2*j+1]))
-			triangle_slice[i][j] = (tens_digit * 10) + (ones_digit) // assign the two-digit number to the two-dimensional array
-		}
-	}
-
 	// for debugging
 
-	fmt.Println(triangle_slice)
-	fmt.Println(find_starting_index_of_slice_n(4))
-	fmt.Println(triangle_slice[14][0])
+	fmt.Println(retrieve_element_from_triangle(4, 0))
 	fmt.Println(return_14_digit_binary_number(2047))
 }
