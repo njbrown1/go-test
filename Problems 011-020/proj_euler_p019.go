@@ -11,7 +11,7 @@ func main() {
 	// weekday_of := map[int]string{0: "Sun", 1: "Mon", 2: "Tue",
 	//	3: "Wed", 4: "Thu", 5: "Fri", 6: "Sat"}
 
-	for year := 1901; year <= 1912; year++ { // probably inclusive, but idk
+	for year := 1901; year <= 2000; year++ { // probably inclusive, but idk
 
 		// determine whether a year is a leap year, and set February to that many days
 		if (year%4 == 0) && (year%100 != 0) {
