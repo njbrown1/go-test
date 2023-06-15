@@ -3,18 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("great")
 
-	year := 1901
-	month := "Jan"
-	number_of_days := map[string]int{"Jan": 31, "Mar": 31, "Apr": 30, "May": 31,
-		"Jun": 30, "Jul": 31, "Aug": 31, "Ssep": 30, "Oct": 31, "Nov": 30, "Dec": 30}
+	start_year := 1901
+	current_first_weekday_of_month := 6 // December 1st, 1900 was a Saturday
+	days_in_month := map[int]int{1: 31, 3: 31, 4: 30, 5: 31,
+		6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 30}
+	weekday_of := map[int]string{0: "Sun", 1: "Mon", 2: "Tue",
+		3: "Wed", 4: "Thu", 5: "Fri", 6: "Sat"}
+	fmt.Println(start_year, days_in_month, weekday_of)
 
-	fmt.Println(year, month, number_of_days)
-	number_of_days["Feb"] = 28
-	fmt.Println(year, month, number_of_days)
-	number_of_days["Feb"] = 29
-	fmt.Println(year, month, number_of_days)
+	for year := 1901; year <= 2000; year++ { // probably inclusive, but idk
+
+		// determine whether a year is a
+
+	}
 }
 
 // You are given the following information, but you may prefer to do some research for yourself.
