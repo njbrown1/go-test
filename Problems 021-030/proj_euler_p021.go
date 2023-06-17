@@ -50,7 +50,7 @@ func main() {
 		sum_of_amicable_numbers += amicable_numbers[i]
 	}
 	fmt.Println(amicable_numbers)
-	fmt.Println(sum_of_amicable_numbers)
+	fmt.Println(sum_of_amicable_numbers) // solved! answer: 31626
 }
 
 // evaluate the sum of all the amicable numbers under 10000.
