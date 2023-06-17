@@ -42,5 +42,5 @@ func main() {
 			}
 		}
 	}
-	fmt.Println(number_of_first_month_Sundays)
+	fmt.Println(number_of_first_month_Sundays) // solved! answer: 171
 }
