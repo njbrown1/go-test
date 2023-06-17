@@ -3,30 +3,27 @@ package main
 import (
 	"fmt"
 	"math/big"
+	"strconv"
 )
 
-func factorial_of_number_020(number int64) *big.Int {
-
-	// BigInts are required – instead of int64 – because the factorial of
-	// numbers > 30 exceeds the integer limit for int64.
-
+func factorial_of_number_020(number int64) string {
 	product := big.NewInt(1)
 	for i := 1; i <= int(number); i++ {
 		product.Mul(product, big.NewInt(int64(i)))
 	}
-
-	return product
+	return product.String()
 }
 
 func main() {
-	fmt.Println("hello world")
 	result := factorial_of_number_020(100)
-	digits_slice := []int
-	for i := 0; i <= len(result); i++ {
-
+	sum_of_factorial_digits := 0
+	digits_slice := []int{}
+	for i := range result {
+		individual_digit, _ := strconv.Atoi(string(result[i]))
+		digits_slice = append(digits_slice, individual_digit)
 	}
-
-
-
-	for i, _ := range
+	for i := range digits_slice {
+		sum_of_factorial_digits += digits_slice[i]
+	}
+	fmt.Println(sum_of_factorial_digits)
 }
