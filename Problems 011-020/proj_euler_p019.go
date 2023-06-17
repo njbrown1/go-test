@@ -25,7 +25,6 @@ func main() {
 
 	for year := 1901; year <= 2000; year++ { // inclusive
 
-		// determine whether a year is a leap year, and set February to that many days
 		if (year%4 == 0) && (year%100 != 0) {
 			days_in_month[2] = 29
 		} else if year%400 == 0 {
