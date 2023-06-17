@@ -52,7 +52,3 @@ func main() {
 	fmt.Println(amicable_numbers)
 	fmt.Println(sum_of_amicable_numbers) // solved! answer: 31626
 }
-
-// evaluate the sum of all the amicable numbers under 10000.
-// amicable – where d(a) = b, d(b) = a, and a != b
-// d(x) – sum of proper divisors of x
