@@ -5,8 +5,27 @@ import (
 	"math"
 )
 
+func is_k_contained_in_amicable_numbers(amicable_numbers []int, number int) bool {
+	for _, i := range amicable_numbers {
+		if i == number {
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
+	var amicable_numbers []int
 	fmt.Println("hi")
+
+	for number := 1; number <= 10; number++ {
+		if is_k_contained_in_amicable_numbers(amicable_numbers, number) == true {
+			// don't bother checking, because it's already added
+		} else {
+			a := find_sum_of_divisors_of_n(number)
+			fmt.Println(a, number)
+		}
+	}
 }
 
 func find_sum_of_divisors_of_n(n int) int {
@@ -30,4 +49,6 @@ func find_sum_of_divisors_of_n(n int) int {
 	return sum_of_factors
 }
 
-// evaluate the sum of all the amicable numbers under 10000
+// evaluate the sum of all the amicable numbers under 10000.
+// amicable – where d(a) = b, d(b) = a, and a != b
+// d(x) – sum of proper divisors of x
