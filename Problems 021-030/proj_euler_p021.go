@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func is_k_contained_in_amicable_numbers(amicable_numbers []int, number int) bool {
+func is_number_contained_in_amicable_numbers(amicable_numbers []int, number int) bool {
 	for _, i := range amicable_numbers {
 		if i == number {
 			return true
@@ -16,7 +16,7 @@ func is_k_contained_in_amicable_numbers(amicable_numbers []int, number int) bool
 
 func find_sum_of_divisors_of_n(n int) int {
 
-	factors_slice := []int{1}                                  // initialize an empty slice that factors will be added to
+	factors_slice := []int{1}                                  // initialize a slice (with 1) that factors will be added to
 	square_root_of_n := int(math.Floor(math.Sqrt(float64(n)))) // finds square root of n, rounded DOWN
 
 	for i := 2; i <= square_root_of_n; i++ {
@@ -29,7 +29,7 @@ func find_sum_of_divisors_of_n(n int) int {
 		}
 	}
 	sum_of_factors := 0
-	for i := range factors_slice {
+	for i := range factors_slice { // add together all of the factors in factors_slice
 		sum_of_factors += factors_slice[i]
 	}
 	return sum_of_factors
@@ -37,10 +37,8 @@ func find_sum_of_divisors_of_n(n int) int {
 
 func main() {
 	var amicable_numbers []int
-	fmt.Println("hi")
-
 	for number := 1; number <= 10000; number++ {
-		if is_k_contained_in_amicable_numbers(amicable_numbers, number) == false {
+		if is_number_contained_in_amicable_numbers(amicable_numbers, number) == false { // only check the number if it's not in amicable_numbers already
 			a := find_sum_of_divisors_of_n(number)
 			if number == find_sum_of_divisors_of_n(a) && number != a {
 				amicable_numbers = append(amicable_numbers, a, number)
