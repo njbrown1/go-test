@@ -11,7 +11,7 @@ func main() {
 	cleaned_names := extract_names(string(input_names))
 	fmt.Println(cleaned_names)
 	fmt.Println(find_sum_of_letters_in_name("ZZZZ"))
-	compare_names("ALPHAX", "NATHAN")
+	fmt.Println(compare_names("ANDREW", "ANDREA"))
 
 	// alphabetical_list_of_names := []string{"AAAAAAAA", "ZZZZZZZZ"}
 
@@ -45,6 +45,9 @@ func find_sum_of_letters_in_name(name string) int {
 }
 
 func compare_names(pre_existing_name string, name_to_be_added string) bool {
+
+	var determination bool // determination is true if name_to_be_added belongs BEFORE pre_existing_name, and vice versa.
+
 	letter_to_number := map[string]int{"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8,
 		"I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19,
 		"T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26}
@@ -53,6 +56,18 @@ func compare_names(pre_existing_name string, name_to_be_added string) bool {
 		pre_existing_name_LETTER := letter_to_number[string(pre_existing_name[letter])]
 		name_to_be_added_LETTER := letter_to_number[string(name_to_be_added[letter])]
 		fmt.Println(pre_existing_name_LETTER, name_to_be_added_LETTER)
+
+		if pre_existing_name_LETTER > name_to_be_added_LETTER {
+			fmt.Println(name_to_be_added, "belongs before", pre_existing_name)
+			determination = true
+			break
+		} else if pre_existing_name_LETTER < name_to_be_added_LETTER {
+			fmt.Println(name_to_be_added, "belongs after", pre_existing_name)
+			determination = false
+			break
+		} else if pre_existing_name_LETTER == name_to_be_added_LETTER {
+			fmt.Println("need to continue")
+		}
 	}
-	return true
+	return determination
 }
