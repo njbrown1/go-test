@@ -46,7 +46,7 @@ func find_sum_of_letters_in_name(name string) int {
 
 func compare_names(pre_existing_name string, name_to_be_added string) bool {
 
-	var determination bool // determination is true if name_to_be_added belongs BEFORE pre_existing_name, and vice versa.
+	var determination bool // determination is 0 if
 
 	letter_to_number := map[string]int{"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8,
 		"I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19,
