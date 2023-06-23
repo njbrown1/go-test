@@ -8,7 +8,7 @@ func main() {
 	input_names, _ := os.ReadFile("name_testing.txt")
 	cleaned_names := extract_names(string(input_names))
 	fmt.Println(cleaned_names)
-	fmt.Println(find_sum_of_letters_in_name("COLIN"))
+	fmt.Println(find_sum_of_letters_in_name("COLIZ"))
 }
 
 func extract_names(text string) []string { // takes the input names and returns a slice with all of the 'cleaned' names
@@ -28,7 +28,7 @@ func find_sum_of_letters_in_name(name string) int {
 	sum_of_letters := 0
 
 	for i := range name {
-		nth_letter := name[i]
+		nth_letter := name[i] //
 		for letter := 1; letter <= 26; letter++ {
 			if alphabet[letter] == nth_letter {
 				sum_of_letters += letter
