@@ -29,23 +29,35 @@ func find_sum_of_divisors_of_n(n int) int {
 
 func main() {
 	abundant_numbers := []int{12}
-	for number := 13; number <= 1000; number++ { // max: 28123
+	for number := 13; number <= 28123; number++ { // max: 28123
 		sum_of_factors := find_sum_of_divisors_of_n(number)
 		if sum_of_factors > number {
 			abundant_numbers = append(abundant_numbers, number)
 		}
 	}
 	fmt.Println(abundant_numbers)
-	fmt.Println(len(abundant_numbers))
-	integer := 116
+	fmt.Println("len:", len(abundant_numbers))
 
-	for _, abundant_number := range abundant_numbers {
-		reduced_integer := integer - abundant_number
-		fmt.Println(reduced_integer, integer, abundant_number)
-		index := sort.SearchInts(abundant_numbers, reduced_integer)
-		if index < len(abundant_numbers) && abundant_numbers[index] == integer {
-			fmt.Println(integer, "is the sum of", abundant_number, "and", abundant_numbers[index])
-			break
+	sum_of_unruly_numbers := 0 // an unruly number is a number that is NOT the sum of any two abundant numbers
+
+	for integer := 1; integer <= 28123; integer++ {
+		for _, abundant_number_1 := range abundant_numbers {
+			abundant_number_2 := integer - abundant_number_1
+			fmt.Println("integer:", integer, "| ab1:", abundant_number_1, "| ab2:", abundant_number_2)
+			index := sort.SearchInts(abundant_numbers, abundant_number_2)
+
+			if abundant_numbers[index] == abundant_number_2 { // confirming the SearchInts function found a correct abundant number
+				fmt.Println(integer, "is the sum of", abundant_number_1, "and", abundant_number_2)
+				break
+			}
+
+			if abundant_number_2 < 0 {
+				fmt.Println(integer, "is not the sum of any two abundant numbers")
+				sum_of_unruly_numbers += integer
+				break
+			}
 		}
 	}
+
+	fmt.Println(sum_of_unruly_numbers)
 }
