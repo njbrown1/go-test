@@ -1,7 +1,9 @@
 package main
 
-import "math"
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func find_sum_of_divisors_of_n(n int) int {
 
@@ -25,6 +27,13 @@ func find_sum_of_divisors_of_n(n int) int {
 }
 
 func main() {
-	result := find_sum_of_divisors_of_n(12)
-	fmt.Println(result)
+	abundant_numbers := []int{12}
+	for number := 13; number <= 28123; number++ {
+		sum_of_factors := find_sum_of_divisors_of_n(number)
+		if sum_of_factors > number {
+			abundant_numbers = append(abundant_numbers, number)
+		}
+	}
+	fmt.Println(abundant_numbers)
+	fmt.Println(len(abundant_numbers))
 }
