@@ -25,5 +25,5 @@ func main() {
 	for i := range digits_slice {
 		sum_of_factorial_digits += digits_slice[i]
 	}
-	fmt.Println(sum_of_factorial_digits)
+	fmt.Println(sum_of_factorial_digits) // problem solved! answer: 648
 }
