@@ -6,17 +6,27 @@ import (
 	"regexp"
 )
 
+// A quick high-level overview of the code:
+// 1. the extract_names function takes all of the names from names.txt and puts them into the cleaned_names slice (to get
+// rid of the quotation marks, commas, and whitespace). I had to learn Regex to solve that problem effectively!
+// 2. the compare_names function just determines the alphabeticized order of existing_name and input_name.
+// 3. the find_sum_of_letters_in_name function: if the letters in the name COLIN were turned into numbers (ex. C = 3, O = 15, L = 12),
+// the function would find the sum of those numbers. so find_sum_of_letters_in_name("COLIN") = 53.
+// 4. here's what main() does: for EVERY name in the cleaned_names slice, it tries to find the two names that already EXIST in
+// the alphabetical_list slice that correctly 'sandwich' the input_name (ie. the input_name fits between those two names). once it's found
+// those two names, it INSERTS the input_name at the correct position in the alphabetical_list slice (using copying techniques). note: I added
+// "AAAAAAAA" and "ZZZZZZZZ" to begin the alphabetical list, so I didn't have to modify the 'for' loop for the first two names (because
+// those first two names would not have bread to sandwich themselves between if I didn't add "AAAAAAAA" and "ZZZZZZZZ").
+// 5. after the names are all alphabeticized correctly in the alphabetical_list slice, each name's "name score" is determined by MULTIPLYING
+// the output from the find_sum_of_letters_in_name function and the numbered position of the name within the slice. ex. COLIN would obtain a
+// score of 938 x 53 = 49714. and all of the name scores are added together – and I was careful to ensure that the name scores for "AAAAAAAA"
+// and "ZZZZZZZZ" were NOT added to the final sum_of_name_scores.
+
 func main() {
 
 	input_names, _ := os.ReadFile("names.txt")
 	cleaned_names := extract_names(string(input_names))
-
 	fmt.Println("cleaned_names:", cleaned_names)
-	fmt.Println()
-	fmt.Println()
-	fmt.Println()
-	fmt.Println()
-
 	alphabetical_list := []string{"AAAAAAAA", "ZZZZZZZZ"}
 
 	for _, input_name := range cleaned_names {
@@ -33,14 +43,11 @@ func main() {
 			}
 		}
 	}
-	fmt.Println(alphabetical_list)
-	fmt.Println(alphabetical_list[938])
-
 	sum_of_name_scores := 0
 	for i := 1; i < (len(alphabetical_list) - 1); i++ {
 		sum_of_name_scores += (find_sum_of_letters_in_name(alphabetical_list[i]) * i)
 	}
-	fmt.Println(sum_of_name_scores)
+	fmt.Println(sum_of_name_scores) // solved! answer: 871198282
 }
 
 func extract_names(text string) []string { // takes the input names from a .txt file and returns a slice with all of the 'cleaned' names
@@ -72,7 +79,7 @@ func find_sum_of_letters_in_name(name string) int {
 
 func compare_names(existing_name string, input_name string) string {
 
-	if existing_name == input_name {
+	if existing_name == input_name { // all of the names in names.txt are distinct, thankfully.
 		fmt.Println("error: name1 and name2 are the same")
 	}
 
@@ -96,11 +103,11 @@ func compare_names(existing_name string, input_name string) string {
 			determination = "before"
 			break
 		} else {
-			// continue to the next letter to check
+			// continue to the next letter
 		}
 	}
 
-	if determination == "undecided" {
+	if determination == "undecided" { // because the English alphabetical conventions say that ANNA would fall before ANNABELLA.
 		if existing_name == shorter_name {
 			determination = "before"
 		} else if input_name == shorter_name {
