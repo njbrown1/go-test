@@ -15,34 +15,24 @@ func main() {
 	fmt.Println(find_sum_of_letters_in_name("ZZZZ"))
 	fmt.Println()
 
-	name1 := "SUSANNA"
-	name2 := "NATHAN"
-	result := compare_names(name1, name2)
-	fmt.Println(name1, "belongs", result, name2)
+	// name1 := "SUSANNA"
+	// name2 := "NATHAN"
+	// result := compare_names(name1, name2)
+	// fmt.Println(name1, "belongs", result, name2)
 
 	// trying something new
 
-	alphabetical_list := []string{"AAAAAAAA", "ZZZZZZZZ"}
+	alphabetical_list := []string{"AAAAAAAA", "ASHER", "MEG", "SUSANNA", "ZZZZZZZZ"}
+	input_name := "NATHAN"
 
-	for i := 0; i <= (len(cleaned_names) - 1); i++ {
-		for j := 0; j <= (len(alphabetical_list) - 1); j++ {
-			fmt.Println(cleaned_names[i], alphabetical_list[j])
-
-			result1 := compare_names(cleaned_names[i], alphabetical_list[j])
-			result2 := compare_names(cleaned_names[i], alphabetical_list[j+1])
-
-			fmt.Println(cleaned_names[i], "belongs", result1, alphabetical_list[j])
-			fmt.Println(cleaned_names[i], "belongs", result2, alphabetical_list[j+1])
-
-			alphabetical_slot_found := (result1 == "after") && (result2 == "before")
-			if alphabetical_slot_found == true {
-				alphabetical_list = append(alphabetical_list, "") // Making space for the new element
-				copy(alphabetical_list[(j+1):], alphabetical_list[(j):])
-				fmt.Println("alphabetical_list:", alphabetical_list) // Shifting elements
-				alphabetical_list[j] = cleaned_names[i]              // Copying/inserting the value
-				fmt.Println("alphabetical_list:", alphabetical_list)
-				alphabetical_slot_found = false
-				break
+	for i, existing_name := range alphabetical_list {
+		result1 := compare_names(alphabetical_list[i], input_name)
+		fmt.Println(existing_name, "belongs", result1, input_name)
+		if result1 == "before" {
+			result2 := compare_names(alphabetical_list[i+1], input_name)
+			fmt.Println(existing_name, "belongs", result2, input_name)
+			if result2 == "after" {
+				fmt.Println(input_name, "should go between", alphabetical_list[i], "and", alphabetical_list[i+1])
 			}
 		}
 	}
