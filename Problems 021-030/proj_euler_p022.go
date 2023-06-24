@@ -7,20 +7,28 @@ import (
 )
 
 func main() {
+
 	input_names, _ := os.ReadFile("name_testing.txt")
 	cleaned_names := extract_names(string(input_names))
 
 	fmt.Println(cleaned_names)
 	fmt.Println(find_sum_of_letters_in_name("ZZZZ"))
 	fmt.Println("–––––")
-
 	name1 := "ANNA"
 	name2 := "ANNA"
 	result := compare_names(name1, name2)
 	fmt.Println(name1, "belongs", result, name2)
+
+	// trying something new
+
+	alphabetical_list := []string{"AAAAAAAA", "ZZZZZZZZ"}
+
+	alphabetical_list = append(alphabetical_list, "")  // Making space for the new element
+	copy(alphabetical_list[3:], alphabetical_list[2:]) // Shifting elements
+	alphabetical_list[2] = "PATRICIA"                  // Copying/inserting the value
 }
 
-func extract_names(text string) []string { // takes the input names and returns a slice with all of the 'cleaned' names
+func extract_names(text string) []string { // takes the input names from a .txt file and returns a slice with all of the 'cleaned' names
 	re := regexp.MustCompile(`\s*"([^"]+)"\s*`)
 	matches := re.FindAllStringSubmatch(text, -1) // -1 finds all matches, apparently
 
