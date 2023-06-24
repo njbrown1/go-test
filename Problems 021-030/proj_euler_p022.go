@@ -9,12 +9,15 @@ import (
 func main() {
 	input_names, _ := os.ReadFile("name_testing.txt")
 	cleaned_names := extract_names(string(input_names))
+
 	fmt.Println(cleaned_names)
 	fmt.Println(find_sum_of_letters_in_name("ZZZZ"))
-	fmt.Println(compare_names("ANDRE", "ANDREW"))
+	fmt.Println("–––––")
 
-	// alphabetical_list_of_names := []string{"AAAAAAAA", "ZZZZZZZZ"}
-
+	name1 := "ANNA"
+	name2 := "ANNA"
+	result := compare_names(name1, name2)
+	fmt.Println(name1, "belongs", result, name2)
 }
 
 func extract_names(text string) []string { // takes the input names and returns a slice with all of the 'cleaned' names
@@ -44,35 +47,42 @@ func find_sum_of_letters_in_name(name string) int {
 	return sum_of_letters
 }
 
-func compare_names(pre_existing_name string, name_to_be_added string) string {
+func compare_names(existing_name string, input_name string) string {
+
+	if existing_name == input_name {
+		fmt.Println("error: name1 and name2 are the same")
+	}
 
 	var determination string = "undecided"
-	var shorter_name string = ""
-
+	shorter_name := input_name // set the input_name as shorter, unless proven otherwise
 	letter_to_number := map[string]int{"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7,
 		"H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17,
 		"R": 18, "S": 19, "T": 20, "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26}
 
-	for letter := range name_to_be_added {
+	if len(existing_name) < len(input_name) {
+		shorter_name = existing_name
+	}
 
-		pre_existing_name_LETTER := letter_to_number[string(pre_existing_name[letter])]
-		name_to_be_added_LETTER := letter_to_number[string(name_to_be_added[letter])]
-		fmt.Println(pre_existing_name_LETTER, name_to_be_added_LETTER)
-
-		if pre_existing_name_LETTER > name_to_be_added_LETTER {
-			fmt.Println(name_to_be_added, "belongs before", pre_existing_name)
-			determination = "before"
-			break
-		} else if pre_existing_name_LETTER < name_to_be_added_LETTER {
-			fmt.Println(name_to_be_added, "belongs after", pre_existing_name)
+	for i := range shorter_name {
+		existing_name_letter := letter_to_number[string(existing_name[i])]
+		input_name_letter := letter_to_number[string(input_name[i])]
+		if existing_name_letter > input_name_letter {
 			determination = "after"
 			break
-		} else if pre_existing_name_LETTER == name_to_be_added_LETTER {
-			fmt.Println("need to continue")
+		} else if existing_name_letter < input_name_letter {
+			determination = "before"
+			break
+		} else {
+			// continue to the next letter to check
 		}
 	}
+
 	if determination == "undecided" {
-		// if name_to_be_added >
+		if existing_name == shorter_name {
+			determination = "before"
+		} else if input_name == shorter_name {
+			determination = "after"
+		}
 	}
 	return determination
 }
