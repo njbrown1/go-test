@@ -27,23 +27,13 @@ func main() {
 	for _, input_name := range cleaned_names {
 
 		for i := range alphabetical_list {
-
 			result1 := compare_names(alphabetical_list[i], input_name)
-			// fmt.Println(existing_name, "belongs", result1, input_name)
-
 			if result1 == "before" {
 				result2 := compare_names(alphabetical_list[i+1], input_name)
-				// fmt.Println(existing_name, "belongs", result2, input_name)
-
 				if result2 == "after" {
-					// fmt.Println(input_name, "should go between", alphabetical_list[i], "and", alphabetical_list[i+1])
-					// fmt.Println(alphabetical_list, "i:", i)
 					alphabetical_list = append(alphabetical_list, "")
-					// fmt.Println(alphabetical_list)
 					copy(alphabetical_list[(i+1):], alphabetical_list[i:])
-					// fmt.Println(alphabetical_list)
 					alphabetical_list[i+1] = input_name
-					// 	fmt.Println(alphabetical_list)
 					break
 				}
 			}
