@@ -58,6 +58,5 @@ func main() {
 			}
 		}
 	}
-
-	fmt.Println(sum_of_unruly_numbers)
+	fmt.Println(sum_of_unruly_numbers) // solved! answer: 4179871
 }
