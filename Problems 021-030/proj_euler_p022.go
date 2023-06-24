@@ -15,7 +15,7 @@ func main() {
 	fmt.Println(find_sum_of_letters_in_name("ZZZZ"))
 	fmt.Println("–––––")
 	name1 := "ANNA"
-	name2 := "ANNA"
+	name2 := "ANNABETH"
 	result := compare_names(name1, name2)
 	fmt.Println(name1, "belongs", result, name2)
 
@@ -23,9 +23,26 @@ func main() {
 
 	alphabetical_list := []string{"AAAAAAAA", "ZZZZZZZZ"}
 
-	alphabetical_list = append(alphabetical_list, "")  // Making space for the new element
-	copy(alphabetical_list[3:], alphabetical_list[2:]) // Shifting elements
-	alphabetical_list[2] = "PATRICIA"                  // Copying/inserting the value
+	for i := 0; i <= (len(cleaned_names) - 1); i++ {
+		for j := 0; j <= (len(alphabetical_list) - 1); j++ {
+			fmt.Println(cleaned_names[i], alphabetical_list[j])
+			result1 := compare_names(cleaned_names[i], alphabetical_list[j])
+			result2 := compare_names(cleaned_names[i], alphabetical_list[j+1])
+			alphabetical_slot_found := (result1 == "after") && (result2 == "before")
+			if alphabetical_slot_found == true {
+				alphabetical_list = append(alphabetical_list, "")        // Making space for the new element
+				copy(alphabetical_list[(j+1):], alphabetical_list[(j):]) // Shifting elements
+				alphabetical_list[j] = cleaned_names[i]                  // Copying/inserting the value
+				fmt.Println("alphabetical_list:", alphabetical_list)
+				alphabetical_slot_found = false
+				break
+			}
+		}
+	}
+
+	// alphabetical_list = append(alphabetical_list, "")  // Making space for the new element
+	// copy(alphabetical_list[3:], alphabetical_list[2:]) // Shifting elements
+	// alphabetical_list[2] = "PATRICIA"                  // Copying/inserting the value
 }
 
 func extract_names(text string) []string { // takes the input names from a .txt file and returns a slice with all of the 'cleaned' names
