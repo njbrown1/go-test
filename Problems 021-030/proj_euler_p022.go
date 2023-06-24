@@ -12,20 +12,14 @@ func main() {
 	cleaned_names := extract_names(string(input_names))
 
 	fmt.Println("cleaned_names:", cleaned_names)
-	fmt.Println(find_sum_of_letters_in_name("ZZZZ"))
 	fmt.Println()
-
-	// name1 := "SUSANNA"
-	// name2 := "NATHAN"
-	// result := compare_names(name1, name2)
-	// fmt.Println(name1, "belongs", result, name2)
-
-	// trying something new
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
 
 	alphabetical_list := []string{"AAAAAAAA", "ZZZZZZZZ"}
 
 	for _, input_name := range cleaned_names {
-
 		for i := range alphabetical_list {
 			result1 := compare_names(alphabetical_list[i], input_name)
 			if result1 == "before" {
@@ -39,8 +33,14 @@ func main() {
 			}
 		}
 	}
-
 	fmt.Println(alphabetical_list)
+	fmt.Println(alphabetical_list[938])
+
+	sum_of_name_scores := 0
+	for i := 1; i < (len(alphabetical_list) - 1); i++ {
+		sum_of_name_scores += (find_sum_of_letters_in_name(alphabetical_list[i]) * i)
+	}
+	fmt.Println(sum_of_name_scores)
 }
 
 func extract_names(text string) []string { // takes the input names from a .txt file and returns a slice with all of the 'cleaned' names
