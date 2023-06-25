@@ -35,9 +35,11 @@ func main() {
 	for len(digits_slice) > 1 {
 		permutation_index := math.Floor(float64(remainder / factorial_of(len(digits_slice)-1)))
 		perm_digit := digits_slice[int(permutation_index)]
-		permutation += string(perm_digit)
+		permutation += fmt.Sprint(perm_digit)
 		remainder -= int(permutation_index) * factorial_of(len(digits_slice)-1)
-		removeElement(digits_slice, int(permutation_index))
+		digits_slice = removeElement(digits_slice, int(permutation_index))
 	}
+
+	fmt.Println(permutation)
 
 }
