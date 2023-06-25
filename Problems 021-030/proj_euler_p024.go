@@ -14,8 +14,7 @@ func factorial_of(number int) int {
 }
 
 func removeElement(slice []int, index int) []int {
-	copy(slice[index:], slice[index+1:])
-	return slice[:len(slice)-1]
+	return append(slice[:index], slice[index+1:]...)
 }
 
 func main() {
@@ -30,12 +29,15 @@ func main() {
 	// small_digits_slice := []int{0, 1, 2, 3}
 
 	digits_slice := []int{0, 1, 2, 3}
-	position := 12
-	// remainder := 12
+	var permutation string
+	remainder := 12
 
-	permutation_index := math.Floor(float64((position - 1) / (factorial_of(len(digits_slice) - 1))))
-	fmt.Println(digits_slice, permutation_index)
-	removeElement(digits_slice, int(permutation_index))
-	fmt.Println(digits_slice, permutation_index)
+	for len(digits_slice) > 1 {
+		permutation_index := math.Floor(float64(remainder / factorial_of(len(digits_slice)-1)))
+		perm_digit := digits_slice[int(permutation_index)]
+		permutation += string(perm_digit)
+		remainder -= int(permutation_index) * factorial_of(len(digits_slice)-1)
+		removeElement(digits_slice, int(permutation_index))
+	}
 
 }
