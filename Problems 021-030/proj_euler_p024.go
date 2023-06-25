@@ -19,18 +19,9 @@ func removeElement(slice []int, index int) []int {
 
 func main() {
 
-	fmt.Println("hi")
-	fmt.Println("factorial of 4:", factorial_of(1))
-	// 10! = 3628800
-	// "0123456789"
-	// len(digits_slice) - 1
-	// xth_lexico_permutation := 4
-	// subtract 1 to perm to make work?
-	// small_digits_slice := []int{0, 1, 2, 3}
-
-	digits_slice := []int{0, 1, 2, 3}
+	digits_slice := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	var full_permutation string
-	lexographical_number := 1
+	lexographical_number := 1000000
 	remainder := (lexographical_number - 1)
 
 	for len(digits_slice) > 0 {
