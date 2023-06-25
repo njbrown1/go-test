@@ -29,17 +29,18 @@ func main() {
 	// small_digits_slice := []int{0, 1, 2, 3}
 
 	digits_slice := []int{0, 1, 2, 3}
-	var permutation string
-	remainder := 12
+	var full_permutation string
+	lexographical_number := 1
+	remainder := (lexographical_number - 1)
 
-	for len(digits_slice) > 1 {
+	for len(digits_slice) > 0 {
 		permutation_index := math.Floor(float64(remainder / factorial_of(len(digits_slice)-1)))
 		perm_digit := digits_slice[int(permutation_index)]
-		permutation += fmt.Sprint(perm_digit)
+		full_permutation += fmt.Sprint(perm_digit)
 		remainder -= int(permutation_index) * factorial_of(len(digits_slice)-1)
 		digits_slice = removeElement(digits_slice, int(permutation_index))
 	}
 
-	fmt.Println(permutation)
+	fmt.Println("lexicographic permutation of", lexographical_number, "–", full_permutation)
 
 }
