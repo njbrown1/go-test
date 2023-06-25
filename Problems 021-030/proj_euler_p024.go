@@ -14,7 +14,8 @@ func factorial_of(number int) int {
 }
 
 func removeElement(slice []int, index int) []int {
-	return append(slice[:index], slice[index+1:]...)
+	copy(slice[index:], slice[index+1:])
+	return slice[:len(slice)-1]
 }
 
 func main() {
@@ -23,17 +24,18 @@ func main() {
 	fmt.Println("factorial of 4:", factorial_of(1))
 	// 10! = 3628800
 	// "0123456789"
+	// len(digits_slice) - 1
 	// xth_lexico_permutation := 4
 	// subtract 1 to perm to make work?
 	// small_digits_slice := []int{0, 1, 2, 3}
 
-	digits_slice := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	digits_slice := []int{0, 1, 2, 3}
+	position := 12
+	// remainder := 12
 
-	result := removeElement(digits_slice, 4)
-	fmt.Println(result)
-
-	position := 1
-	first_digit := math.Floor(float64(position-1) / float64(factorial_of(3)))
-	fmt.Println(first_digit)
+	permutation_index := math.Floor(float64((position - 1) / (factorial_of(len(digits_slice) - 1))))
+	fmt.Println(digits_slice, permutation_index)
+	removeElement(digits_slice, int(permutation_index))
+	fmt.Println(digits_slice, permutation_index)
 
 }
