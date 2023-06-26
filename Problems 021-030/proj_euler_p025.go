@@ -12,6 +12,6 @@ func main() {
 		storage.Add(a, b)
 		a.Set(b)
 		b.Set(storage)
-		fmt.Println("a:", a, "| b:", b, "| i:", i, "| len of b:", len(b.String()))
+		fmt.Println("a:", a, "| b:", b, "| i:", i, "| len of b:", len(b.String())) // final answer is 4782 = i + 2 = 4780 + 2. it's just an adjustment for the indexing.
 	}
 }
