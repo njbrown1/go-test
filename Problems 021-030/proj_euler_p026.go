@@ -10,8 +10,13 @@ func perform_long_divison(divisor int, decimal_places int) string { // where the
 		if remainder == 0 {
 			break
 		}
+		number_of_multiplications := 0
 		for divisor > remainder {
 			remainder *= 10
+			number_of_multiplications++
+			if number_of_multiplications > 1 { // if there's more than one multiplication of 10, for each of them, there needs to be an extra 0 in the quotient.
+				quotient += "0"
+			}
 		}
 		digit := math.Floor(float64(remainder) / float64(divisor))
 		quotient += fmt.Sprint(digit)
@@ -22,7 +27,7 @@ func perform_long_divison(divisor int, decimal_places int) string { // where the
 }
 
 func main() {
-	d := 260
+	d := 809
 	result := perform_long_divison(d, 30)
 	fmt.Println("1 divided by", d, "is approximately:", result)
 }
