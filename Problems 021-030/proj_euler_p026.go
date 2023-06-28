@@ -3,11 +3,9 @@ package main
 import "fmt"
 import "math"
 
-func main() {
-
+func perform_long_divison(divisor int, decimal_places int) string { // where the numerator HAS to be 1, and the divisor is d (as specified in p#026).
 	remainder := 1
-	divisor := 7
-	quotient := "."
+	quotient := "0."
 	for i := 1; i <= 99; i++ {
 		if remainder == 0 {
 			break
@@ -17,8 +15,13 @@ func main() {
 		}
 		digit_or_digits := math.Floor(float64(remainder) / float64(divisor))
 		quotient += fmt.Sprint(digit_or_digits)
-		fmt.Println(remainder, i, divisor, quotient)
 		remainder -= int(digit_or_digits) * divisor
 	}
+	return quotient
+}
 
+func main() {
+	d := 9
+	result := perform_long_divison(d, 30)
+	fmt.Println("1 divided by", d, "is approximately:", result)
 }
