@@ -3,8 +3,9 @@ package main
 import "fmt"
 import "math"
 
-func perform_long_divison(divisor int, decimal_places int) string { // where the numerator HAS to be 1, and the divisor is d (as specified in p#026).
-	// remainder_slice := []int{}
+func perform_long_divison(divisor int, decimal_places int) (int, string) { // where the numerator HAS to be 1, and the divisor is d (as specified in p#026).
+	recurring_cycle_length := 0
+	remainder_slice := []int{}
 	remainder := 1
 	quotient := "0."
 	for i := 1; i <= decimal_places; i++ { // for the specified number of decimal places
@@ -21,15 +22,22 @@ func perform_long_divison(divisor int, decimal_places int) string { // where the
 		}
 		digit := math.Floor(float64(remainder) / float64(divisor)) // calculate the digit
 		quotient += fmt.Sprint(digit)                              // add the digit to the quotient
-		fmt.Println(remainder, digit, quotient)                    // for debugging
-		// re
+		remainder_slice = append(remainder_slice, remainder)
+
+		for j, entry := range remainder_slice {
+			if remainder == entry {
+				recurring_cycle_length = (len(remainder_slice) - remainder_slice[j])
+			}
+		}
+		fmt.Println(remainder, digit, quotient, remainder_slice)
 		remainder -= int(digit) * divisor // adjust the remainder
 	}
-	return quotient
+	return recurring_cycle_length, quotient
 }
 
 func main() {
-	d := 501
-	result := perform_long_divison(d, 300)
-	fmt.Println("1 divided by", d, "is approximately:", result)
+	d := 7
+	length_of_recurring_sequence, quotient := perform_long_divison(d, 30)
+	fmt.Println("1 divided by", d, "is approximately:", quotient)
+	fmt.Println("arbitrary int output for now:", length_of_recurring_sequence)
 }
