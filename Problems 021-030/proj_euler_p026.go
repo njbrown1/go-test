@@ -4,6 +4,7 @@ import "fmt"
 import "math"
 
 func perform_long_divison(divisor int, decimal_places int) (int, string) { // where the numerator HAS to be 1, and the divisor is d (as specified in p#026).
+	recurring_cycle_found := false
 	recurring_cycle_length := 0
 	remainder_slice := []int{}
 	remainder := 1
@@ -18,19 +19,22 @@ func perform_long_divison(divisor int, decimal_places int) (int, string) { // wh
 			number_of_multiplications++
 			if number_of_multiplications > 1 { // if there's more than one multiplication of 10, for each of them, there needs to be an extra 0 in the quotient.
 				quotient += "0"
+				recurring_cycle_length++
 			}
 		}
+
 		digit := math.Floor(float64(remainder) / float64(divisor)) // calculate the digit
 		quotient += fmt.Sprint(digit)                              // add the digit to the quotient
 
 		for _, entry := range remainder_slice {
 			if remainder == entry {
-				recurring_cycle_length = len(remainder_slice)
+				recurring_cycle_length += len(remainder_slice)
+				recurring_cycle_found = true
 				break
 			}
 		}
 		remainder_slice = append(remainder_slice, remainder)
-		if recurring_cycle_length != 0 {
+		if recurring_cycle_found == true {
 			break
 		}
 		fmt.Println(remainder, digit, quotient, remainder_slice)
@@ -40,7 +44,7 @@ func perform_long_divison(divisor int, decimal_places int) (int, string) { // wh
 }
 
 func main() {
-	d := 51
+	d := 7
 	length_of_recurring_sequence, quotient := perform_long_divison(d, 30)
 	fmt.Println("1 divided by", d, "is approximately:", quotient)
 	fmt.Println("length_of_recurring_sequence:", length_of_recurring_sequence)
