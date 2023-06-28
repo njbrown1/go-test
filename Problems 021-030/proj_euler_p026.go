@@ -22,12 +22,16 @@ func perform_long_divison(divisor int, decimal_places int) (int, string) { // wh
 		}
 		digit := math.Floor(float64(remainder) / float64(divisor)) // calculate the digit
 		quotient += fmt.Sprint(digit)                              // add the digit to the quotient
-		remainder_slice = append(remainder_slice, remainder)
 
-		for j, entry := range remainder_slice {
+		for _, entry := range remainder_slice {
 			if remainder == entry {
-				recurring_cycle_length = (len(remainder_slice) - remainder_slice[j])
+				recurring_cycle_length = len(remainder_slice)
+				break
 			}
+		}
+		remainder_slice = append(remainder_slice, remainder)
+		if recurring_cycle_length != 0 {
+			break
 		}
 		fmt.Println(remainder, digit, quotient, remainder_slice)
 		remainder -= int(digit) * divisor // adjust the remainder
@@ -36,8 +40,8 @@ func perform_long_divison(divisor int, decimal_places int) (int, string) { // wh
 }
 
 func main() {
-	d := 7
+	d := 51
 	length_of_recurring_sequence, quotient := perform_long_divison(d, 30)
 	fmt.Println("1 divided by", d, "is approximately:", quotient)
-	fmt.Println("arbitrary int output for now:", length_of_recurring_sequence)
+	fmt.Println("length_of_recurring_sequence:", length_of_recurring_sequence)
 }
