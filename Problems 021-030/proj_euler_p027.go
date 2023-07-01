@@ -1,37 +1,33 @@
 package main
 
 import "fmt"
-import "math"
 
-func is_n_prime(n int) bool {
-	square_root_of_n := int(math.Floor(math.Sqrt(float64(n)))) // finds square root of n, rounded DOWN
-	for i := 1; i <= square_root_of_n; i++ {
-		if n%i == 0 {
-			return false
+func generate_primes_v027(limit int) []int { // returns a slice with prime numbers from 2 - limit.
+	prime_slice := []int{2, 3, 5}
+	for i := 4; i <= limit; i++ { // for finding prime numbers up to 'limit'.
+
+		is_k_prime := true
+		for _, prime := range prime_slice {
+			if i%prime == 0 {
+				is_k_prime = false
+			}
+		}
+		if is_k_prime == true {
+			prime_slice = append(prime_slice, i) // if k IS prime, add it to prime_slice.
 		}
 	}
-	return true
+	return prime_slice
 }
 
 func main() {
 	fmt.Println("hi")
 	// a and b must both be odd
 
-	continue_running_until_non_prime_found := true
-	for a := 0; a <= 9; a++ {
-		for b := 0; b <= 9; b++ {
-			number_of_primes_found_before_failure := 0
-			n := 0
-			for continue_running_until_non_prime_found == true {
-				evaluation := (n * n) + (a * n) + b
-				if find_sum_of_divisors_of_n_v027(evaluation) != 1 {
-					fmt.Println(a, b, n, number_of_primes_found_before_failure)
-					break
-				} else {
-					number_of_primes_found_before_failure++
-				}
-				n++
-			}
+	fmt.Println(generate_primes_v027(17))
+
+	for a := 0; a <= 1; a++ {
+		for b := 0; b <= 1; b++ {
+			fmt.Println(a, b)
 		}
 	}
 }
