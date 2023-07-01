@@ -4,10 +4,13 @@ import "fmt"
 
 import "math"
 
-func perform_long_divison(divisor int, decimal_places int) string { // where the numerator HAS to be 1, and the divisor is d (as specified in p#026).
+func perform_long_divison(divisor int, decimal_places int) (string, int) { // where the numerator HAS to be 1, and the divisor is d (as specified in p#026).
+
 	remainder_list := []int{}
 	remainder := 1
 	quotient := "0."
+	length_of_recurring_sequence := 0
+
 	for i := 1; i <= decimal_places; i++ {
 		if remainder == 0 {
 			break
@@ -17,7 +20,7 @@ func perform_long_divison(divisor int, decimal_places int) string { // where the
 			remainder *= 10
 			remainder_list = append(remainder_list, remainder)
 			number_of_multiplications++
-			if number_of_multiplications > 1 { // if there's more than one multiplication of 10, for each of them, there needs to be an extra 0 in the quotient.
+			if number_of_multiplications > 1 {
 				quotient += "0"
 			}
 		}
@@ -27,12 +30,19 @@ func perform_long_divison(divisor int, decimal_places int) string { // where the
 		fmt.Println(remainder, digit, quotient, remainder_list)
 
 		remainder -= int(digit) * divisor
+		for i := range remainder_list {
+			fmt.Println(i, remainder_list)
+			if remainder == remainder_list[i] { // if the last element in remainder_list = an entry in remainder_list
+				fmt.Println("if statement does run")
+				length_of_recurring_sequence = (len(remainder_list) - 1) - i
+			}
+		}
 	}
-	return quotient
+	return quotient, length_of_recurring_sequence
 }
 
 func main() {
 	d := 70
-	quotient := perform_long_divison(d, 30)
-	fmt.Println(quotient)
+	quotient, length_of_recurring_sequence := perform_long_divison(d, 20)
+	fmt.Println(quotient, length_of_recurring_sequence)
 }
