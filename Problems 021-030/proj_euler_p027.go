@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func generate_primes_v027(limit int) []int { // returns a slice with prime numbers from 2 - limit.
 	prime_slice := []int{2, 3, 5}
@@ -18,10 +21,20 @@ func generate_primes_v027(limit int) []int { // returns a slice with prime numbe
 	return prime_slice
 }
 
-func main() {
-	fmt.Println("hi")
-	// a and b must both be odd
+func is_n_prime(n int) bool {
+	square_root_of_n := math.Ceil(math.Sqrt(float64(n)))
+	prime_slice := generate_primes_v027(int(square_root_of_n))
+	for prime := range prime_slice {
+		if n%prime == 0 {
+			return false
+		}
+	}
+	return true
+}
 
+func main() {
+
+	evaluation := 42
 	fmt.Println(generate_primes_v027(100))
 
 	for a := 0; a <= 1; a++ {
