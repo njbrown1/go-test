@@ -20,8 +20,8 @@ func is_k_prime(k int) bool {
 
 func main() {
 	current_best_number_of_consecutive_primes := 0
-	for a := 0; a <= 3; a++ {
-		for b := 0; b <= 3; b++ {
+	for a := -999; a <= 999; a++ {
+		for b := -1000; b <= 1000; b++ {
 			n := 0
 			number_of_consecutive_primes := 0
 			for never_stop := true; never_stop == true; { // this 'for' loop will only stop once it's broken
