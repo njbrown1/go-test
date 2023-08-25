@@ -5,6 +5,24 @@ import (
 	"math/rand"
 )
 
+func runCoinSimulationForNCoinsUntilFailure(numberOfCoins int) int {
+	currentTotal := 0
+	moneyEarned := 0
+	for true {
+		outOfRange := (currentTotal < -2) || (currentTotal > 2)
+		if outOfRange == true {
+			return moneyEarned
+		} else {
+			moneyEarned += (1 * numberOfCoins)
+		}
+		allFlips := flipNCoins(numberOfCoins)
+		adjustment := calculateAdjustment(allFlips)
+		currentTotal += adjustment
+		fmt.Printf("allFlips: %v adjustment: %-2v currentTotal: %-4v\n", allFlips, adjustment, currentTotal)
+	}
+	return 0
+}
+
 func flipNCoins(n int) []int {
 	allFlips := []int{}
 	for i := 1; i <= n; i++ {
@@ -27,23 +45,6 @@ func calculateAdjustment(allFlips []int) int {
 }
 
 func main() {
-	currentTotal := 0
-	moneyEarned := 0
-	numberOfCoins := 3
-	for true {
-
-		outOfRange := (currentTotal < -2) || (currentTotal > 2)
-		if outOfRange == true {
-			moneyEarned = 0 // lose all your money!
-			break
-		} else {
-			moneyEarned += (1 * numberOfCoins)
-		}
-
-		allFlips := flipNCoins(numberOfCoins)
-		adjustment := calculateAdjustment(allFlips)
-		currentTotal += adjustment
-		fmt.Println("allFlips: ", allFlips, "adj: ", adjustment, "currentTotal: ", currentTotal)
-
-	}
+	result := runCoinSimulationForNCoinsUntilFailure(2)
+	fmt.Println("$", result)
 }
