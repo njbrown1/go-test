@@ -1,0 +1,127 @@
+<script defer data-domain="nathanbrown.ghost.io" src="https://plausible.io/js/script.js"></script>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        var nextLink = document.querySelector('a.navigation-item.navigation-next');
+        var previousLink = document.querySelector('a.navigation-item.navigation-previous');
+
+        if (nextLink) {
+            nextLink.remove();
+        }
+
+        if (previousLink) {
+            previousLink.remove();
+        }
+    });
+</script>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+
+    .gh-article-title {
+        font-size: 74px;
+        line-height: 1.1;
+    }
+
+    .gh-article-excerpt {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    ul.nav {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .gh-head-members {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .gh-article-title {
+            font-size: 42px;
+            line-height: 1.1;
+        }
+
+        .gh-article-excerpt {
+            font-size: 24px;
+            line-height: 1.2;
+        }
+</style>
+
+<style>
+    /*Scroll to Top CSS*/
+    .scroll-top {
+        position: fixed;
+        z-index: 50;
+        padding: 0;
+        right: 30px;
+        bottom: 100px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px);
+        height: 46px;
+        width: 46px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all .4s ease;
+        border: none;
+        box-shadow: inset 0 0 0 2px #ccc;
+        color: #ccc;
+        background-color: #fff;
+    }
+
+    .scroll-top.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .scroll-top .icon-tabler-arrow-up {
+        position: absolute;
+        stroke-width: 2px;
+        stroke: #333;
+    }
+
+    .scroll-top svg path {
+        fill: none;
+    }
+
+    .scroll-top svg.progress-circle path {
+        stroke: #333;
+        stroke-width: 4;
+        transition: all .4s ease;
+    }
+
+    .scroll-top:hover {
+        color: var(--ghost-accent-color);
+    }
+
+    .scroll-top:hover .progress-circle path,
+    .scroll-top:hover .icon-tabler-arrow-up {
+        stroke: var(--ghost-accent-color);
+    }
+</style>
+
+<!--   Scroll Top Button  -->
+<button class="btn-toggle-round scroll-top js-scroll-top" type="button" title="Scroll to top">
+    <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-up" width="24" height="24"
+        viewBox="0 0 24 24" stroke-width="1.5" stroke="cuurentColor" fill="none" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="18" y1="11" x2="12" y2="5" />
+        <line x1="6" y1="11" x2="12" y2="5" />
+    </svg>
+</button>
