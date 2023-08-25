@@ -29,19 +29,21 @@ func calculateAdjustment(allFlips []int) int {
 func main() {
 	currentTotal := 0
 	moneyEarned := 0
-	outOfRange := currentTotal < -2 || currentTotal > 2
-	numberOfCoins := 1
+	numberOfCoins := 3
 	for true {
-		allFlips := flipNCoins(numberOfCoins)
-		adjustment := calculateAdjustment(allFlips)
-		currentTotal += adjustment
-		fmt.Println("allFlips: ", allFlips, "adj: ", adjustment, "currentTotal: ", currentTotal)
+
+		outOfRange := (currentTotal < -2) || (currentTotal > 2)
 		if outOfRange == true {
 			moneyEarned = 0 // lose all your money!
-			fmt.Println("debug: ", allFlips, adjustment, currentTotal)
 			break
 		} else {
 			moneyEarned += (1 * numberOfCoins)
 		}
+
+		allFlips := flipNCoins(numberOfCoins)
+		adjustment := calculateAdjustment(allFlips)
+		currentTotal += adjustment
+		fmt.Println("allFlips: ", allFlips, "adj: ", adjustment, "currentTotal: ", currentTotal)
+
 	}
 }
