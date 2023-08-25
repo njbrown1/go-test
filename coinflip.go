@@ -5,18 +5,43 @@ import (
 	"math/rand"
 )
 
-func main() {
-	total := 0
-	for k := 0; k <= 100; k++ {
+func flipNCoins(n int) []int {
+	allFlips := []int{}
+	for i := 1; i <= n; i++ {
 		flip := rand.Intn(2) // will psuedorandomly generate either a 0 or a 1. 0 = tails, and 1 = heads
-		adjust_total := -1   // set adjust_total_by as a default -1 (tails)
-		if flip == 1 {
-			adjust_total = 1
-		}
-		fmt.Print(flip)
-		total += adjust_total
+		allFlips = append(allFlips, flip)
 	}
-	fmt.Println("")
-	fmt.Println("")
-	fmt.Println(total)
+	return allFlips
+}
+
+func calculateAdjustment(allFlips []int) int {
+	adjustment := 0
+	for _, flip := range allFlips {
+		if flip == 0 {
+			adjustment--
+		} else if flip == 1 {
+			adjustment++
+		}
+	}
+	return adjustment
+}
+
+func main() {
+	currentTotal := 0
+	moneyEarned := 0
+	outOfRange := currentTotal < -2 || currentTotal > 2
+	numberOfCoins := 1
+	for true {
+		allFlips := flipNCoins(numberOfCoins)
+		adjustment := calculateAdjustment(allFlips)
+		currentTotal += adjustment
+		fmt.Println("allFlips: ", allFlips, "adj: ", adjustment, "currentTotal: ", currentTotal)
+		if outOfRange == true {
+			moneyEarned = 0 // lose all your money!
+			fmt.Println("debug: ", allFlips, adjustment, currentTotal)
+			break
+		} else {
+			moneyEarned += (1 * numberOfCoins)
+		}
+	}
 }
