@@ -45,22 +45,23 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 	return numbers[randomIndex]
 }
 
-func SimulateRound(numbersChosenLastRound []int) {
-	numbersChosenLastRound = []int{} // empty the slice
-}
-
-func main() {
-	numbersChosenLastRound := []int{}
-	allPlayers := []Player{
-		{0, []int{}, []int{}, 0, "completelyRandom"},
-		{0, []int{}, []int{}, 0, "rock"},
-	}
+func SimulateRound(numbersChosenLastRound []int, allPlayers []Player) {
 	for player := range allPlayers {
-		allPlayers[player].ChooseNumberRandomly()
-		allPlayers[player].GainOnePoint()
-		allPlayers[player].ChooseNumber()
-		allPlayers[player].ChooseNumber()
+		fmt.Println(allPlayers[player])
+		allPlayers[player].numbersChosenLastRound = numbersChosenLastRound
+	}
+	numbersChosenLastRound = []int{} // empty the slice
+	for player := range allPlayers {
 		allPlayers[player].ChooseNumber()
 		fmt.Println(allPlayers[player])
 	}
+}
+
+func main() {
+	numbersChosenLastRound := []int{0, 7}
+	allPlayers := []Player{
+		{0, []int{}, []int{}, 0, "completelyRandom"},
+		{0, []int{}, []int{}, 4, "rock"},
+	}
+	SimulateRound(numbersChosenLastRound, allPlayers)
 }
