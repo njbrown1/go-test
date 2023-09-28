@@ -18,7 +18,7 @@ func (p *Person) GainOnePoint() {
 	p.myScore++
 }
 
-func (p *Person) ChooseInitialNumberRandomly() {
+func (p *Person) ChooseNumberRandomly() {
 	randomNumber := rand.Intn(10) + 1 // generates an integer from 1-10
 	p.myCurrentlyChosenNumber = randomNumber
 }
@@ -37,7 +37,8 @@ func (p *Person) ChooseNumber() {
 	case "cherry":
 		// do stuff
 	case "completelyRandom":
-		// do stuff
+		p.ChooseNumberRandomly()
+		p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
 	}
 }
 
@@ -50,11 +51,20 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 func main() {
 	Rock := Person{0, []int{}, []int{}, 0, "rock"}
 	fmt.Println(Rock)
-	Rock.ChooseInitialNumberRandomly()
+	Rock.ChooseNumberRandomly()
 	fmt.Println(Rock)
 	Rock.GainOnePoint()
 	Rock.ChooseNumber()
 	Rock.ChooseNumber()
 	Rock.ChooseNumber()
 	fmt.Println(Rock)
+	Cherry := Person{0, []int{}, []int{}, 0, "completelyRandom"}
+	fmt.Println(Cherry)
+	Cherry.ChooseNumber()
+	Cherry.ChooseNumber()
+	Cherry.ChooseNumber()
+	Cherry.ChooseNumber()
+	Cherry.ChooseNumber()
+	Cherry.ChooseNumber()
+	fmt.Println(Cherry)
 }
