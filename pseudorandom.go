@@ -7,13 +7,19 @@ import (
 )
 
 type Person struct {
-	myScore            int
-	numbersIHaveChosen []int
-	behavior           string
+	myScore                 int
+	numbersIHaveChosen      []int
+	myCurrentlyChosenNumber int
+	behavior                string
 }
 
-func (p *Person) GainOnePoint() {
+func (p *Person) GainOnePoint() string {
 	p.myScore++
+	return ("score successfully incremented by 1")
+}
+
+func (p *Person) GenerateInitialNumber() int {
+	return (rand.Intn(10) + 1)
 }
 
 func (p *Person) ChooseNumber() int {
@@ -37,16 +43,8 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 }
 
 func main() {
-	/*
-		// fmt.Println("hello world")
-		fmt.Println(rand.Intn(25))
-		theRockOne := Person{4, []int{}, "rock"}
-		fmt.Println(theRockOne)
-		theRockOne.GainOnePoint()
-		fmt.Println(theRockOne)
-		theRockOne.ChooseNumber()
-		fmt.Println(theRockOne)
-	*/
+
+	// global variables: numOfRoundsPerSimulation, numOfSimulations,
 	numbers := []int{0, 5, 3, 2, 1, 7, 8}
 	for i := 1; i <= 10; i++ {
 		fmt.Println(chooseRandomNumberFromSlice(numbers))
