@@ -7,25 +7,31 @@ import (
 )
 
 type Person struct {
-	myScore                 int
-	numbersIHaveChosen      []int
-	myCurrentlyChosenNumber int
-	behavior                string
+	myScore                     int
+	numbersIHaveChosenInThePast []int
+	numbersFromLastRound        []int
+	myCurrentlyChosenNumber     int
+	behavior                    string
 }
 
-func (p *Person) GainOnePoint() string {
+func (p *Person) GainOnePoint() {
 	p.myScore++
-	return ("score successfully incremented by 1")
 }
 
-func (p *Person) GenerateInitialNumber() int {
-	return (rand.Intn(10) + 1)
+func (p *Person) ChooseInitialNumberRandomly() {
+	randomNumber := rand.Intn(10) + 1 // generates an integer from 1-10
+	p.myCurrentlyChosenNumber = randomNumber
 }
 
-func (p *Person) ChooseNumber() int {
+func (p *Person) ChooseNumber() {
 	switch p.behavior {
 	case "rock":
-		fmt.Println("I'm a rock")
+		if p.myCurrentlyChosenNumber == 0 {
+			fmt.Println("WHOOPS rock forgot to choose an initial number with ChooseInitialNumberRandomly")
+		} else {
+			p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
+		}
+		// else, do nothing. rock just keeps his number the whole time.
 	case "opportunist":
 		// do stuff
 	case "cherry":
@@ -33,7 +39,6 @@ func (p *Person) ChooseNumber() int {
 	case "completelyRandom":
 		// do stuff
 	}
-	return 4
 }
 
 func chooseRandomNumberFromSlice(numbers []int) int {
@@ -43,10 +48,13 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 }
 
 func main() {
-
-	// global variables: numOfRoundsPerSimulation, numOfSimulations,
-	numbers := []int{0, 5, 3, 2, 1, 7, 8}
-	for i := 1; i <= 10; i++ {
-		fmt.Println(chooseRandomNumberFromSlice(numbers))
-	}
+	Rock := Person{0, []int{}, []int{}, 0, "rock"}
+	fmt.Println(Rock)
+	Rock.ChooseInitialNumberRandomly()
+	fmt.Println(Rock)
+	Rock.GainOnePoint()
+	Rock.ChooseNumber()
+	Rock.ChooseNumber()
+	Rock.ChooseNumber()
+	fmt.Println(Rock)
 }
