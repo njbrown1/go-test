@@ -46,9 +46,13 @@ func calculateAdjustment(allFlips []int) int {
 
 func main() {
 	moneyEarnedSlice := []int{}
+	totalMoneyEarned := 0
 	for i := 1; i < 100; i++ {
-		moneyEarned := runCoinSimulationForNCoinsUntilFailure(8)
+		moneyEarned := runCoinSimulationForNCoinsUntilFailure(1)
 		moneyEarnedSlice = append(moneyEarnedSlice, moneyEarned)
+		totalMoneyEarned += moneyEarned
 	}
 	fmt.Println(moneyEarnedSlice)
+	fmt.Println(totalMoneyEarned)
+	fmt.Println(float64(totalMoneyEarned / 100.0))
 }
