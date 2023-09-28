@@ -28,8 +28,6 @@ func (p *Person) ChooseNumber() {
 	case "rock":
 		if p.myCurrentlyChosenNumber == 0 {
 			fmt.Println("WHOOPS rock forgot to choose an initial number with ChooseInitialNumberRandomly")
-		} else {
-			p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
 		}
 		// else, do nothing. rock just keeps his number the whole time.
 	case "opportunist":
@@ -38,8 +36,8 @@ func (p *Person) ChooseNumber() {
 		// do stuff
 	case "completelyRandom":
 		p.ChooseNumberRandomly()
-		p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
 	}
+	p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
 }
 
 func chooseRandomNumberFromSlice(numbers []int) int {
