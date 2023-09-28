@@ -6,30 +6,29 @@ import (
 	"time"
 )
 
-type Person struct {
+type Player struct {
 	myScore                     int
 	numbersIHaveChosenInThePast []int
-	numbersFromLastRound        []int
+	numbersChosenLastRound      []int
 	myCurrentlyChosenNumber     int
 	behavior                    string
 }
 
-func (p *Person) GainOnePoint() {
+func (p *Player) GainOnePoint() {
 	p.myScore++
 }
 
-func (p *Person) ChooseNumberRandomly() {
-	randomNumber := rand.Intn(10) + 1 // generates an integer from 1-10
-	p.myCurrentlyChosenNumber = randomNumber
+func (p *Player) ChooseNumberRandomly() {
+	p.myCurrentlyChosenNumber = rand.Intn(10) + 1 // generates an integer from 1-10
 }
 
-func (p *Person) ChooseNumber() {
+func (p *Player) ChooseNumber() {
 	switch p.behavior {
 	case "rock":
 		if p.myCurrentlyChosenNumber == 0 {
 			fmt.Println("WHOOPS rock forgot to choose an initial number with ChooseInitialNumberRandomly")
 		}
-		// else, do nothing. rock just keeps his number the whole time.
+		// else, do nothing. rock just keeps his number for every single round.
 	case "opportunist":
 		// do stuff
 	case "cherry":
@@ -46,23 +45,22 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 	return numbers[randomIndex]
 }
 
+func SimulateRound(numbersChosenLastRound []int) {
+	numbersChosenLastRound = []int{} // empty the slice
+}
+
 func main() {
-	Rock := Person{0, []int{}, []int{}, 0, "rock"}
-	fmt.Println(Rock)
-	Rock.ChooseNumberRandomly()
-	fmt.Println(Rock)
-	Rock.GainOnePoint()
-	Rock.ChooseNumber()
-	Rock.ChooseNumber()
-	Rock.ChooseNumber()
-	fmt.Println(Rock)
-	Cherry := Person{0, []int{}, []int{}, 0, "completelyRandom"}
-	fmt.Println(Cherry)
-	Cherry.ChooseNumber()
-	Cherry.ChooseNumber()
-	Cherry.ChooseNumber()
-	Cherry.ChooseNumber()
-	Cherry.ChooseNumber()
-	Cherry.ChooseNumber()
-	fmt.Println(Cherry)
+	numbersChosenLastRound := []int{}
+	allPlayers := []Player{
+		{0, []int{}, []int{}, 0, "completelyRandom"},
+		{0, []int{}, []int{}, 0, "rock"},
+	}
+	for player := range allPlayers {
+		allPlayers[player].ChooseNumberRandomly()
+		allPlayers[player].GainOnePoint()
+		allPlayers[player].ChooseNumber()
+		allPlayers[player].ChooseNumber()
+		allPlayers[player].ChooseNumber()
+		fmt.Println(allPlayers[player])
+	}
 }
