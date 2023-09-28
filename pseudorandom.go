@@ -3,38 +3,52 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
+type Person struct {
+	myScore            int
+	numbersIHaveChosen []int
+	behavior           string
+}
+
+func (p *Person) GainOnePoint() {
+	p.myScore++
+}
+
+func (p *Person) ChooseNumber() int {
+	switch p.behavior {
+	case "rock":
+		fmt.Println("I'm a rock")
+	case "opportunist":
+		// do stuff
+	case "cherry":
+		// do stuff
+	case "completelyRandom":
+		// do stuff
+	}
+	return 4
+}
+
 func chooseRandomNumberFromSlice(numbers []int) int {
-	return 4
-}
-
-// type 1. always chooses the same number every time
-
-type TheRock struct {
-	myScore          int
-	lastNumberIChose int
-}
-
-func (r *TheRock) GainOnePoint() {
-	r.myScore++
-}
-
-func (r *TheRock) ChooseNumber() int {
-	return 4
-}
-
-func addNumbers(x int, y int) int {
-	return (x + y)
+	rand.Seed(time.Now().UnixNano()) // choose a random seed based on the time
+	randomIndex := rand.Intn(len(numbers))
+	return numbers[randomIndex]
 }
 
 func main() {
-	fmt.Println("hello world")
-	fmt.Println(rand.Intn(25))
-	theRockOne := TheRock{4, 0}
-	fmt.Println(theRockOne)
-	theRockOne.GainOnePoint()
-	fmt.Println(theRockOne)
-	theRockOne.myScore = addNumbers(3, 7)
-	fmt.Println(theRockOne)
+	/*
+		// fmt.Println("hello world")
+		fmt.Println(rand.Intn(25))
+		theRockOne := Person{4, []int{}, "rock"}
+		fmt.Println(theRockOne)
+		theRockOne.GainOnePoint()
+		fmt.Println(theRockOne)
+		theRockOne.ChooseNumber()
+		fmt.Println(theRockOne)
+	*/
+	numbers := []int{0, 5, 3, 2, 1, 7, 8}
+	for i := 1; i <= 10; i++ {
+		fmt.Println(chooseRandomNumberFromSlice(numbers))
+	}
 }
