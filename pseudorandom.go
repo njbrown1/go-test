@@ -14,25 +14,24 @@ type Player struct {
 	behavior                    string
 }
 
-func (p *Player) SimulateRound(numbersChosenLastRound []int) {
-	p.numbersChosenLastRound = numbersChosenLastRound
-	p.ChooseNumber()
-	fmt.Println(p)
+func GenerateRandomNumberFromOneToNInclusive(n int) int {
+	return (rand.Intn(n) + 1)
 }
 
 func (p *Player) ChooseNumber() {
 	switch p.behavior {
 	case "rock":
-		if p.myCurrentlyChosenNumber == 0 {
-			fmt.Println("WHOOPS rock forgot to choose an initial number with ChooseInitialNumberRandomly")
+		if len(p.numbersIHaveChosenInThePast) == 0 {
+			p.myCurrentlyChosenNumber = GenerateRandomNumberFromOneToNInclusive(10)
+		} else {
+			// do nothing. rock just keeps his number the same for every single round.
 		}
-		// else, do nothing. rock just keeps his number for every single round.
 	case "opportunist":
 		// do stuff
 	case "cherry":
 		// do stuff
 	case "completelyRandom":
-		p.myCurrentlyChosenNumber = rand.Intn(10) + 1 // generates an integer from 1-10
+		p.myCurrentlyChosenNumber = GenerateRandomNumberFromOneToNInclusive(10)
 	}
 	p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
 }
@@ -44,12 +43,16 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 }
 
 func main() {
-	numbersChosenLastRound := []int{0, 7}
+	// numbersChosenLastRound := []int{0, 7}
 	allPlayers := []Player{
 		{0, []int{}, []int{}, 0, "completelyRandom"},
 		{0, []int{}, []int{}, 4, "rock"},
 	}
-	for player := range allPlayers {
-		allPlayers[player].SimulateRound(numbersChosenLastRound)
+	for i := 1; i <= 10; i++ {
+		for player := range allPlayers {
+			allPlayers[player].ChooseNumber()
+			fmt.Println(allPlayers[player])
+		}
 	}
+	fmt.Println("end")
 }
