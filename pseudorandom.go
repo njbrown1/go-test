@@ -71,13 +71,15 @@ func (p *Player) ChooseNumber(numbersChosenLastRound []int) {
 			// do nothing. rock just keeps his number the same for every single round.
 		}
 	case "opportunist":
-		// do stuff
-	case "cherry":
-		// do stuff
+		leastChosenNumbers := findLeastCommonNumbers(p.numbersChosenLastRound)
+		p.myCurrentlyChosenNumber = chooseRandomNumberFromSlice(leastChosenNumbers)
+	case "realEstateAgent":
+		mostChosenNumbers := findMostCommonNumbers(p.numbersChosenLastRound)
+		p.myCurrentlyChosenNumber = chooseRandomNumberFromSlice(mostChosenNumbers)
 	case "completelyRandom":
 		p.myCurrentlyChosenNumber = GenerateRandomNumberFromOneToNInclusive(10)
 	}
-	p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber)
+	p.numbersIHaveChosenInThePast = append(p.numbersIHaveChosenInThePast, p.myCurrentlyChosenNumber) // add the number chosen to the history
 }
 
 func chooseRandomNumberFromSlice(numbers []int) int {
