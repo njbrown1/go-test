@@ -18,7 +18,6 @@ func generateRandomNumberFromOneToNInclusive(n int) int {
 }
 
 func chooseRandomNumberFromSlice(numbers []int) int {
-	rand.Seed(time.Now().UnixNano()) // choose a random seed based on the time
 	randomIndex := rand.Intn(len(numbers))
 	return numbers[randomIndex]
 }
@@ -90,7 +89,7 @@ func (p *Player) UpdateScore(numbersChosenThisRound []int) {
 	for number := range numbersChosenThisRound {
 		if p.myCurrentlyChosenNumber == number {
 			counter++
-			fmt.Println(number, counter)
+			fmt.Println(p.myCurrentlyChosenNumber, number, counter)
 		}
 	}
 	if counter == 1 { // if the number only occurs once in the numbersChosenThisRound (ie. the player chose a unique number)
@@ -99,22 +98,11 @@ func (p *Player) UpdateScore(numbersChosenThisRound []int) {
 }
 
 func main() {
+	rand.Seed(time.Now().UnixNano()) // choose a random seed based on the time
 	numbersChosenLastRound := []int{}
 	numbersChosenThisRound := []int{}
 	allPlayers := []Player{
 		{0, []int{}, 0, "completelyRandom"},
 		{0, []int{}, 0, "rock"},
 	}
-	for _, player := range allPlayers {
-		player.chooseNumber(numbersChosenLastRound)
-		fmt.Println(player, "first")
-		numbersChosenThisRound = append(numbersChosenThisRound, player.myCurrentlyChosenNumber)
-	}
-	fmt.Println(numbersChosenLastRound)
-	fmt.Println(numbersChosenThisRound)
-	fmt.Println(allPlayers, "after numbersChosenThisRound")
-	for _, player := range allPlayers {
-		player.UpdateScore(numbersChosenThisRound)
-	}
-	fmt.Println(allPlayers)
 }
