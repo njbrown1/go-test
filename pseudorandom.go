@@ -67,8 +67,6 @@ func (p *Player) ChooseNumber(numbersChosenLastRound []int) {
 	case "rock":
 		if len(p.numbersIHaveChosenInThePast) == 0 {
 			p.myCurrentlyChosenNumber = GenerateRandomNumberFromOneToNInclusive(10)
-		} else {
-			// do nothing. rock just keeps his number the same for every single round.
 		}
 	case "opportunist":
 		leastChosenNumbers := findLeastCommonNumbers(p.numbersChosenLastRound)
@@ -89,15 +87,16 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 }
 
 func main() {
-	/*
-		numbersChosen := []int{0, 7}
-		allPlayers := []Player{
-			{0, []int{}, []int{}, 0, "completelyRandom"},
-			{0, []int{}, []int{}, 4, "rock"},
-		}
-	*/
-	fmt.Println(findMostCommonNumbers([]int{4, 0, 4, 3, 1, 3, 3, 0, 0, 6, 1, 2, 6}))
-	fmt.Println(findLeastCommonNumbers([]int{4, 0, 4, 3, 1, 3, 3, 0, 0, 6, 1, 2, 6}))
-	fmt.Println(findLeastCommonNumbers([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 4, 5, 5, 5}))
-	fmt.Println(findMostCommonNumbers([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 4, 5, 5, 5}))
+	numbersChosenLastRound := []int{}
+	allPlayers := []Player{
+		{0, []int{}, []int{}, 0, "completelyRandom"},
+		{0, []int{}, []int{}, 0, "rock"},
+	}
+	for _, player := range allPlayers {
+		player.ChooseNumber(numbersChosenLastRound)
+	}
+	numbersChosenLastRound = []int{} // clear the slice
+	for _, player := range allPlayers {
+		fmt.Println(player)
+	}
 }
