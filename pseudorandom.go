@@ -18,6 +18,24 @@ func GenerateRandomNumberFromOneToNInclusive(n int) int {
 	return (rand.Intn(n) + 1)
 }
 
+func findMostCommon(nums []int) []int {
+	countMap := make(map[int]int)
+	maxCount := 0
+	for _, num := range nums {
+		countMap[num]++
+		if countMap[num] > maxCount {
+			maxCount = countMap[num]
+		}
+	}
+	mostCommon := []int{}
+	for num, count := range countMap {
+		if count == maxCount {
+			mostCommon = append(mostCommon, num)
+		}
+	}
+	return mostCommon
+}
+
 func (p *Player) ChooseNumber(numbersChosenLastRound []int) {
 	p.numbersChosenLastRound = numbersChosenLastRound
 	switch p.behavior {
@@ -44,38 +62,15 @@ func chooseRandomNumberFromSlice(numbers []int) int {
 }
 
 func main() {
-	numbersChosen := []int{0, 7}
-	allPlayers := []Player{
-		{0, []int{}, []int{}, 0, "completelyRandom"},
-		{0, []int{}, []int{}, 4, "rock"},
-	}
-	for i := 1; i <= 10; i++ {
-		for player := range allPlayers {
-			allPlayers[player].ChooseNumber(numbersChosen)
-			fmt.Println(allPlayers[player])
+	/*
+		numbersChosen := []int{0, 7}
+		allPlayers := []Player{
+			{0, []int{}, []int{}, 0, "completelyRandom"},
+			{0, []int{}, []int{}, 4, "rock"},
 		}
-		numbersChosen = []int{}                   // clear the slice
-		fmt.Println(numbersChosen, "after clear") // after clear
-		for player := range allPlayers {
-			numbersChosen = append(numbersChosen, allPlayers[player].myCurrentlyChosenNumber)
-			fmt.Println(numbersChosen)
-		}
+	*/
 
-		for player := range allPlayers {
-			counter := 0
-			for number := range numbersChosen {
-				if allPlayers[player].myCurrentlyChosenNumber == numbersChosen[number] {
-					counter++
-				}
-			}
-			if counter == 1 {
-				allPlayers[player].myScore++
-			}
-		}
-	}
-	fmt.Println("end")
-	fmt.Println(" ")
-	fmt.Println(" ")
-	fmt.Println(" ")
-	fmt.Println(" ")
+	input := []int{4, 0, 4, 3, 1, 3, 3}
+	result := findMostCommon(input)
+	fmt.Println(result)
 }
