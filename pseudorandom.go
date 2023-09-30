@@ -20,15 +20,16 @@ func GenerateRandomNumberFromOneToNInclusive(n int) int {
 
 func findMostCommonNumbers(nums []int) []int {
 	countMap := make(map[int]int)
+	mostCommon := []int{}
 	maxCount := 0
+
 	for _, num := range nums {
 		countMap[num]++
 		if countMap[num] > maxCount {
 			maxCount = countMap[num]
 		}
 	}
-	fmt.Println(countMap)
-	mostCommon := []int{}
+
 	for num, count := range countMap {
 		if count == maxCount {
 			mostCommon = append(mostCommon, num)
@@ -39,22 +40,25 @@ func findMostCommonNumbers(nums []int) []int {
 
 func findLeastCommonNumbers(nums []int) []int {
 	countMap := make(map[int]int)
+	leastCommonNumbers := []int{}
+	minCount := len(nums) + 1
+
 	for _, num := range nums {
 		countMap[num]++
 	}
-	fmt.Println(countMap)
-	minCount := len(nums) + 1
+
 	for num := 1; num <= 10; num++ {
 		if countMap[num] < minCount {
 			minCount = countMap[num]
 		}
 	}
-	leastCommonNumbers := []int{}
+
 	for num := 1; num <= 10; num++ {
 		if countMap[num] == minCount {
 			leastCommonNumbers = append(leastCommonNumbers, num)
 		}
 	}
+	return leastCommonNumbers
 }
 
 func (p *Player) ChooseNumber(numbersChosenLastRound []int) {
@@ -92,4 +96,6 @@ func main() {
 	*/
 	fmt.Println(findMostCommonNumbers([]int{4, 0, 4, 3, 1, 3, 3, 0, 0, 6, 1, 2, 6}))
 	fmt.Println(findLeastCommonNumbers([]int{4, 0, 4, 3, 1, 3, 3, 0, 0, 6, 1, 2, 6}))
+	fmt.Println(findLeastCommonNumbers([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 4, 5, 5, 5}))
+	fmt.Println(findMostCommonNumbers([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 4, 5, 5, 5}))
 }
