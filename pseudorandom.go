@@ -94,9 +94,13 @@ func main() {
 	}
 	for _, player := range allPlayers {
 		player.ChooseNumber(numbersChosenLastRound)
+		fmt.Println(player)
 	}
 	numbersChosenLastRound = []int{} // clear the slice
 	for _, player := range allPlayers {
 		fmt.Println(player)
+		numbersChosenLastRound = append(numbersChosenLastRound, player.myCurrentlyChosenNumber)
+		fmt.Println(player)
 	}
+	fmt.Println(numbersChosenLastRound)
 }
